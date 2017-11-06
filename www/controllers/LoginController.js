@@ -17,9 +17,9 @@ function LoginController($scope, $rootScope, $location, AuthService) {
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
         AuthService.login(lc.user.email, lc.user.password, function (response) {
-            debugger
+            
             var resp = response.data;
-            if (resp.code==200) {
+            if (resp && resp.code==200) {
                 AuthService.createJWTToken(resp.result.user, resp.result.token);
                 AuthService.setCredentials();
                 $location.path('/app');

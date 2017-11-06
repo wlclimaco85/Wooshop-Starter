@@ -51,11 +51,62 @@ angular.module('App.Auth')
                 console.log('email: '+user.email);
                 console.log('displayName: '+user.displayName);
 
-                $http.post(BackendCfg.url+'/api/user/register', user )
-                    .success(function (response) {
-                        callback(response);
-                    });
-            };
+            //    $http.post(BackendCfg.url+'/api/user/register', user).then(function (response) {
+           //         callback(response);
+           //     }, function (response) {
+           //         callback(response);
+           //    });
+
+
+           $.ajax({
+          method: 'POST',
+          url: BackendCfg.url+'/api/user/register',
+          contentType:'application/json',
+                   headers: {
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "*",
+              'Accept': 'application/json'
+           },
+        //  data: user,
+          success: function (response) {
+            debugger
+            console.log("success ");
+            console.log(response);
+          },
+          error: function (xhr) {
+            debugger
+            console.log("error ");
+            console.log(xhr);
+          }
+});
+
+
+       /*          let headers = new Headers();
+
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+
+  headers.append('Access-Control-Allow-Origin', 'http://localhost:8080');
+  headers.append('Access-Control-Allow-Credentials', 'true');
+
+  headers.append('GET', 'POST', 'OPTIONS');
+
+  headers.append('Authorization', 'Basic ' + "dddddddddddddddddd");
+
+               // var arr = [1];
+                   $.ajax({ 
+                   url: BackendCfg.url+'/api/user/register',
+                   type: 'POST',
+                   contentType:'application/json',
+                   headers: headers,
+                       data: user,
+                       success: function(response){
+                         callback(response);
+                          }
+                     });
+                
+*/
+            }; 
 
             service.encryptPassword = function (password) {
                 var aesPack = {};
@@ -85,6 +136,7 @@ angular.module('App.Auth')
                 };
 
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+                $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
             };
 
             service.createJWTToken = function (user, token) {
@@ -94,6 +146,7 @@ angular.module('App.Auth')
                 };
 
                 $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+                $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
             };
 
             service.setCredentials = function () {
@@ -105,6 +158,7 @@ angular.module('App.Auth')
                 $rootScope.globals = {};
             //    $cookieStore.remove('globals');
                 $http.defaults.headers.common.Authorization = '';
+                $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
             };
 
             return service;

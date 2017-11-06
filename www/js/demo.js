@@ -6,7 +6,7 @@
 // Here is how to define your module
 // has dependent on mobile-angular-ui
 //
-var app = angular.module('MobileAngularUiExamples', [
+var app = angular.module('MobileAngularUiExamples', ['ionic',
   'ngRoute',
   'mobile-angular-ui',
   'ngAnimate',
@@ -53,53 +53,184 @@ app.config(function($routeProvider) {
 });
 */
 
-app.config(['$routeProvider',
-function ($routeProvider){
-    $routeProvider
-        .when('/', {
-            templateUrl: '/../templates/login.html',
-            reloadOnSearch: false
-        })
+app.run(function($ionicPlatform , $rootScope, $timeout) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
 
-        .when('/login', {
-          templateUrl: '/../templates/login.html',
-          reloadOnSearch: false
-      })
+    }
+    if (window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
 
-        .when('/app/home', {
-            templateUrl: '/../templates/home.html',
-            reloadOnSearch: false
-        })
+     $rootScope.authStatus = false;
+   //stateChange event
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+      $rootScope.authStatus = toState.authStatus;
+      if($rootScope.authStatus){
+        
+      
+      }
+    });
 
-        .when('/#/app/scroll', {
-          templateUrl: '/../templates/scroll.html',
-          reloadOnSearch: false
-      })
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+    console.log("URL : "+toState.url);
+    if(toState.url=='/dashboard'){
+      console.log("match : "+toState.url);
+      $timeout(function(){
+        angular.element(document.querySelector('#leftMenu' )).removeClass("hide");
+      },1000);
+    } 
+  });
 
-      .when('/app/toggle', {
-        templateUrl: '/../templates/toggle.html',
-        reloadOnSearch: false
-    })
+});
 
-    .when('/app/tabs', {
-      templateUrl: '/../templates/tabs.html',
-      reloadOnSearch: false
+/*
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
   })
 
-        .when('/app/forms', {
+//--------------------------------------
 
-            templateUrl: '/../templates/forms.html',
-            reloadOnSearch: false
-        })
+ .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tab-signin.html'
+      }
+    },
+  authStatus: false
+  })
+ .state('app.signup', {
+    url: '/signup',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/tab-signup.html',
+      }
+   },
+  authStatus: false
+  })
+//--------------------------------------
 
-        .when('/app', {
-            templateUrl: '/../templates/home.html',
-            reloadOnSearch: false
-        })
 
-        .otherwise({ redirectTo: '/' });
-}
-]);
+  .state('app.dashboard', {
+    url: '/dashboard',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/dashboard.html',
+    controller: 'DashCtrl'
+      }
+     },
+   authStatus: true
+  })
+
+
+    .state('app.profiles', {
+      url: '/profiles',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/profiles.html',
+          controller: 'ProfilesCtrl'
+        }
+      }
+    })
+
+  .state('app.profile', {
+    url: '/profile/:profileId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile-detail.html',
+        controller: 'ProfileCtrl'
+      }
+    }
+  });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/login');
+});
+
+
+*/
+
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: '/../templates/menu.html'//,
+ //   controller: 'AppCtrl'
+  })
+
+//--------------------------------------
+
+ .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/tab-signin.html'
+      }
+    },
+  authStatus: false
+  })
+ .state('app.signup', {
+    url: '/signup',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/tab-signup.html',
+      }
+   },
+  authStatus: false
+  })
+//--------------------------------------
+
+
+  .state('app.dashboard', {
+    url: '/dashboard',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/dashboard.html'//,
+   // controller: 'DashCtrl'
+      }
+     },
+   authStatus: true
+  })
+
+
+    .state('app.profiles', {
+      url: '/profiles',
+      views: {
+        'menuContent': {
+          templateUrl: '/../templates/profiles.html'//,
+     //     controller: 'ProfilesCtrl'
+        }
+      }
+    })
+
+  .state('app.profile', {
+    url: '/profile/:profileId',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/profile-detail.html'//,
+    //    controller: 'ProfileCtrl'
+      }
+    }
+  });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/login');
+});
+
 
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
 function ($rootScope, $location, $cookieStore, $http) {
@@ -107,9 +238,14 @@ function ($rootScope, $location, $cookieStore, $http) {
     $rootScope.globals = $cookieStore.get('globals') || {};
     if ($rootScope.globals.currentUser) {
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + $rootScope.globals.token;
+
         $rootScope.currentUser = $rootScope.globals.currentUser;
     }
 
+      $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+      $http.defaults.headers.common['Origin'] = '*';
+      $http.defaults.headers.common['Referer'] = '*';
+      
     $rootScope.isSubmitted = false;
 
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -117,20 +253,27 @@ function ($rootScope, $location, $cookieStore, $http) {
         // redirect to login page if not logged in and trying to access a restricted page
 
         var sPath = ""
-        if($location.path())
+        if($location.hash())
         {
-          sPath = $location.path();
+          sPath = $location.hash();
+          $location.path(null);
+          $location.path(sPath);
+          $location.url(null);
+          $location.url(sPath);
         }
         else
         {
-          sPath = $location.hash();
+          sPath = $location.path();
         }
 
-        var restrictedPage = $.inArray(sPath, ['/login','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+      //  var aa = ['/login','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app'];
+     //   aa.indexOf('/logind')
+
+        var restrictedPage = $.inArray(sPath, ['/app/login','/app/signup','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
         $rootScope.currentUser = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {
-          debugger
+          
             if(sPath.indexOf('admin') > -1) {
                 $location.path('/admin.login');
             } else if(sPath.indexOf('app') > -1) {
