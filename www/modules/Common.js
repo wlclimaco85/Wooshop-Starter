@@ -4,7 +4,7 @@
 var commonModule = angular.module('App.Common', []);
 
 commonModule.constant('BackendCfg',  {
-    url: 'http://localhost:8080/spring-angularjs-java-webapp-template-project-1.0-SNAPSHOT',
+    url: 'http://localhost:8080',
     setupHttp: function(http) {
         http.defaults.useXDomain = true;
         http.defaults.withCredentials = true;

@@ -14,13 +14,10 @@ angular.module('App.Auth')
                 var user = {};
                 var aesPack = this.encryptPassword(password);
                 user.password = '';
-                user.vpassword = '';
-                user.iv = aesPack.iv;
-                user.salt = aesPack.salt;
-                user.keySize = aesPack.keySize;
-                user.iterations = aesPack.iterations;
-                user.encryptedPassword = aesPack.ciphertext;
                 user.email = email;
+
+                user.name = 'ssss'
+                user.lastName ='ssss'
                 console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
@@ -29,6 +26,8 @@ angular.module('App.Auth')
                 }, function (response) {
                     callback(response);
                 });
+
+
                
                 console.log('login event posted...')
             };
@@ -37,37 +36,117 @@ angular.module('App.Auth')
                 BackendCfg.setupHttp($http);
                 // this.createCredentials(user.email, user.password);
 
-                var aesPack = this.encryptPassword(user.password);
-                user.password = '';
-                user.vpassword = '';
-                user.iv = aesPack.iv;
-                user.salt = aesPack.salt;
-                user.keySize = aesPack.keySize;
-                user.iterations = aesPack.iterations;
-                user.encryptedPassword = aesPack.ciphertext;
+               // var aesPack = this.encryptPassword(user.password);
+               var user = {};
+               
+               user.password = 'tttt';
+               user.email = 'eee@eees.com';
+               user.name = 'ssss'
+           //    var aesPack = this.encryptPassword(password);
+               user.lastName ='ssss'
+                user.password = 'ddddd';
+              //  user.vpassword = '';
+              //  user.iv = aesPack.iv;
+              //  user.salt = aesPack.salt;
+              //  user.keySize = aesPack.keySize;
+              //  user.iterations = aesPack.iterations;
+              //  user.encryptedPassword = aesPack.ciphertext;
 
                 console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
                 console.log('displayName: '+user.displayName);
 
-            //    $http.post(BackendCfg.url+'/api/user/register', user).then(function (response) {
-           //         callback(response);
-           //     }, function (response) {
-           //         callback(response);
-           //    });
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/registration'
+
+                $.ajax
+                ({
+                    type: "POST",
+                    url: url,
+                  dataType: 'json',
+                  async: false,
+                  
+                  data: user,
+                  success: function (){
+                      alert('Thanks for your comment!'); 
+                  }
+              });
+
+                $.ajax
+                ({
+                  type: "POST",
+                  url: url,
+                  dataType: 'json',
+                  async: false,
+                  data: user,
+                  success: function (){
+                    alert('Thanks for your comment!'); 
+                  }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: user,
+                    crossDomain: true,
+                    
+                  });
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: user,
+                    dataType: "json",
+                    contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                    xhrFields: {
+                       withCredentials: true
+                    },
+                     crossDomain: true,
+                    
+                    //beforeSend: function (xhr) {
+                    //},
+                    success: function (result) {
+                       var token = result;
+                    },
+                    //complete: function (jqXHR, textStatus) {
+                    //},
+                    error: function (req, status, error) {
+                    alert(error);
+                    }
+                });
+                
+            /*    var request = new XMLHttpRequest();
+                request.open('POST', 'http://localhost:8080/user/articles', true);
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                request.setRequestHeader('Authorization', 'Basic ' + 'bXVrZXNoOm0xMjM=');
+                request.setRequestHeader('Accept', 'application/json');
+                request.send("username=mukesh&password=m123");
+                
+                request.onreadystatechange = function () {
+                    if (request.readyState === 4) {
+                       alert(request.responseText);
+                    }
+                };
+
+                $http.post('http://localhost:8080/user/articles', {}).then(function (response) {
+                    callback(response);
+                }, function (response) {
+                    callback(response);
+               });
 
 
-           $.ajax({
+
+            $.ajax({
           method: 'POST',
-          url: BackendCfg.url+'/api/user/register',
+          url: BackendCfg.url+'/registration',
           contentType:'application/json',
-                   headers: {
-              'Content-Type': 'application/json',
-              "Access-Control-Allow-Origin": "*",
-              'Accept': 'application/json'
-           },
-        //  data: user,
+          cache: false,
+          setCookies: "432D966205550F9B58BA001D60EA6FA5",
+          crossDomain: true,
+          dataType: 'json',
+          data: user,
           success: function (response) {
             debugger
             console.log("success ");
@@ -78,8 +157,8 @@ angular.module('App.Auth')
             console.log("error ");
             console.log(xhr);
           }
-});
-
+}); */
+//terra@terra.com.br
 
        /*          let headers = new Headers();
 
@@ -135,8 +214,6 @@ angular.module('App.Auth')
                     }
                 };
 
-                $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-                $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
             };
 
             service.createJWTToken = function (user, token) {
@@ -145,8 +222,6 @@ angular.module('App.Auth')
                     token: token
                 };
 
-                $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-                $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
             };
 
             service.setCredentials = function () {
@@ -158,7 +233,7 @@ angular.module('App.Auth')
                 $rootScope.globals = {};
             //    $cookieStore.remove('globals');
                 $http.defaults.headers.common.Authorization = '';
-                $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
             };
 
             return service;
