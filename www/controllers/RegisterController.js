@@ -15,9 +15,10 @@ function RegisterController($location, $scope, $rootScope, AuthService, FlashMes
         rc.user.admin = admin;
         AuthService.register(rc.user, function (response) {
             if (response.code==200) {
+                debugger
                 AuthService.createJWTToken(response.result.user, response.result.token);
                 AuthService.setCredentials();
-                $location.path('/app');
+                $location.path('app/dashboard');
             } else {
                 rc.error = response.result;
                 rc.details = response.details;

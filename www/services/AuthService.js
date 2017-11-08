@@ -37,26 +37,12 @@ angular.module('App.Auth')
                 // this.createCredentials(user.email, user.password);
 
                // var aesPack = this.encryptPassword(user.password);
-               var user = {};
+               var oUser = {};
                
-               user.password = 'tttt';
-               user.email = 'eee@eees.com';
-               user.name = 'ssss'
-           //    var aesPack = this.encryptPassword(password);
-               user.lastName ='ssss'
-                user.password = 'ddddd';
-              //  user.vpassword = '';
-              //  user.iv = aesPack.iv;
-              //  user.salt = aesPack.salt;
-              //  user.keySize = aesPack.keySize;
-              //  user.iterations = aesPack.iterations;
-              //  user.encryptedPassword = aesPack.ciphertext;
-
-                console.log('encryptedPassword: '+user.encryptedPassword);
-                console.log('pass: '+user.password);
-                console.log('email: '+user.email);
-                console.log('displayName: '+user.displayName);
-
+               oUser.password = user.password;
+               oUser.email = user.email;
+               oUser.name = user.name;
+               oUser.lastName = user.lastName;
                 
                 var authorizationBasic = 'bXVrZXNoOm0xMjM=';
                 var url = 'http://localhost:8080/registration'
@@ -68,12 +54,18 @@ angular.module('App.Auth')
                   dataType: 'json',
                   async: false,
                   
-                  data: user,
-                  success: function (){
-                      alert('Thanks for your comment!'); 
+                  data: oUser,
+                  success: function (response){
+                       callback(response);
                   }
               });
-
+        /*
+              $http.post(url, user).then(function (response) {
+                callback(response);
+            }, function (response) {
+                callback(response);
+           });*/
+/*
                 $.ajax
                 ({
                   type: "POST",
@@ -117,7 +109,7 @@ angular.module('App.Auth')
                     }
                 });
                 
-            /*    var request = new XMLHttpRequest();
+                var request = new XMLHttpRequest();
                 request.open('POST', 'http://localhost:8080/user/articles', true);
                 request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
                 request.setRequestHeader('Authorization', 'Basic ' + 'bXVrZXNoOm0xMjM=');

@@ -200,11 +200,61 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/dashboard',
     views: {
       'menuContent': {
-        templateUrl: '/../templates/dashboard.html'//,
+        templateUrl: '/../templates/tabsController.html'//,
    // controller: 'DashCtrl'
       }
      },
    authStatus: true
+  })
+  //app/cadastro
+  .state('app.cadastro', {
+    url: '/cadastro',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/tab4DefaultPage.html'//,
+   //     controller: 'ProfilesCtrl'
+      }
+    }
+  })
+  //app/horarios
+  .state('app.horarios', {
+    url: '/horarios',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/horarios.html'//,
+   //     controller: 'ProfilesCtrl'
+      }
+    }
+  })
+  //app/notificacao
+  .state('app.notificacao', {
+    url: '/notificacao',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/notificoes.html'//,
+   //     controller: 'ProfilesCtrl'
+      }
+    }
+  })
+  //app/msg
+  .state('app.msg', {
+    url: '/msg',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/mensagem.html'//,
+   //     controller: 'ProfilesCtrl'
+      }
+    }
+  })
+  //app/fotos
+  .state('app.fotos', {
+    url: '/fotos',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/fotos.html'//,
+   //     controller: 'ProfilesCtrl'
+      }
+    }
   })
 
 
@@ -272,7 +322,7 @@ function ($rootScope, $location, $cookieStore, $http) {
       //  var aa = ['/login','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app'];
      //   aa.indexOf('/logind')
 
-        var restrictedPage = $.inArray(sPath, ['/app/login','/app/signup','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+        var restrictedPage = $.inArray(sPath, ['/app/login','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
         $rootScope.currentUser = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {
