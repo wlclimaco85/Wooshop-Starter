@@ -1,9 +1,20 @@
+<div class="tabs-striped  tabs-background-positive tabs-color-light">
+    <div class="tabs">
+			<a class="tab-item active" href="#/app/dashboard"><i class="icon ion-android-clipboard"></i> Inicial </a>
+      <a class="tab-item" href="#/app/cadastro"><i class="icon ion-android-clipboard"></i> Cadastro </a>
+      <a class="tab-item" href="#/app/horarios"> <i class="icon ion-ios-time-outline"></i> Horarios </a>
+      <a class="tab-item" href="#/app/notificacao"> <i class="icon ion-ios-time-outline"></i> Notificações </a>
+      <a class="tab-item" href="#/app/msg"> <i class="icon ion-ios-time-outline"></i> Msg </a>
+      <a class="tab-item" href="#/app/fotos"> <i class="icon ion-images"></i> Fotos </a>
+    </div>
+  </div>
 <ion-view view-title="Dashboard" hide-back-button="true">
   <ion-content>
-	   <div class="card" ng-repeat="profilelist in profiles" >
-		  <div class="item item-divider">{{profilelist.name}}</div>
-		  <div class="item item-text-wrap">{{profilelist.deseg}}</div>
-	  </div>
-    </ion-list>
+			<ion-card>
+					<ion-card-content>
+							<canvas id="pie" class="chart chart-pie chart-xs" chart-data="data"
+							chart-labels="labels" chart-options="options"></canvas>
+	</ion-card-content>
+</ion-card>
   </ion-content>
 </ion-view>

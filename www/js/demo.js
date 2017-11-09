@@ -200,8 +200,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/dashboard',
     views: {
       'menuContent': {
-        templateUrl: '/../templates/tabsController.html'//,
-   // controller: 'DashCtrl'
+        templateUrl: '/../templates/dashboard.html',
+        controller: 'DashboardController'
       }
      },
    authStatus: true
