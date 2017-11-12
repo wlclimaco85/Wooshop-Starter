@@ -9,24 +9,34 @@ angular.module('App.Auth')
         function (Base64, $http,  $rootScope, $timeout, BackendCfg) {
             var service = this;
             service.login = function (email, password, callback) {
-                BackendCfg.setupHttp($http);
+                debugger
+             //   BackendCfg.setupHttp($http);
                 // this.createCredentials(email, password);
                 var user = {};
                 var aesPack = this.encryptPassword(password);
-                user.password = '';
+                user.password = password;
                 user.email = email;
-
-                user.name = 'ssss'
-                user.lastName ='ssss'
-                console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
-                $http.post(BackendCfg.url+'/api/user/authenticate', user).then(function (response) {
+             /*  $http.get('http://localhost:8080/admin/home', user).then(function (response) {
                     callback(response);
                 }, function (response) {
                     callback(response);
                 });
-
+                */
+                //debugger
+                 $.ajax
+                ({
+                    type: "GET",
+                    url: 'http://localhost:8080/admin/home',
+                  dataType: 'json',
+                  async: false,
+                  
+                  data: user,
+                  success: function (response){
+                       callback(response);
+                  }
+              });
 
                
                 console.log('login event posted...')
@@ -179,6 +189,30 @@ angular.module('App.Auth')
 */
             }; 
 
+            service.addEmpresa = function (empresa, callback) {
+                BackendCfg.setupHttp($http);
+                
+                // this.createCredentials(user.email, user.password);
+
+               // var aesPack = this.encryptPassword(user.password);
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/empresa/insert'
+
+                $.ajax
+                ({
+                    type: "POST",
+                    url: url,
+                  dataType: 'json',
+                  async: false,
+                  
+                  data: empresa,
+                  success: function (response){
+                      debugger
+                       callback(response);
+                  }
+              });
+            }; 
             service.encryptPassword = function (password) {
                 var aesPack = {};
                 var iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);

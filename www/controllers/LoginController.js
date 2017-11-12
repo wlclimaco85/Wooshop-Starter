@@ -6,23 +6,24 @@ angular.module('App.Auth')
 
 function LoginController($scope, $rootScope, $location, AuthService) {
     var lc = this;
-
+debugger
     (function initController() {
         // reset login status
         AuthService.clearCredentials();
     })();
 
     lc.login = function () {
+        debugger
         console.log('received the login event for user: '+lc.user.email);
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
         AuthService.login(lc.user.email, lc.user.password, function (response) {
-            
-            var resp = response.data;
+            debugger
+            var resp = response;
             if (resp && resp.code==200) {
                 AuthService.createJWTToken(resp.result.user, resp.result.token);
                 AuthService.setCredentials();
-                $location.path('/app');
+                $location.path('/app/dashboard');
             } else {
                 lc.error = resp.result;
                 lc.details = resp.details;

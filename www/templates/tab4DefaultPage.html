@@ -9,44 +9,59 @@
   </div>
 <ion-view title="Tab 4 Default Page" id="page5">
   <ion-content padding="true" class="has-header">
-    <form id="tab4DefaultPage-form2" class="list">
-      <label class="item item-input" id="tab4DefaultPage-input3">
-        <input type="text" placeholder="Nome Empresa">
-      </label>
-      <label class="item item-input" id="tab4DefaultPage-input4" name="nome">
-        <input type="text" placeholder="Nome Responsavel">
-      </label>
-      <label class="item item-input" id="tab4DefaultPage-input5" name="Email">
-        <input type="email" placeholder="Email">
-      </label>
+    <form id="tab4DefaultPage-form2" class="list"  ng-controller="CadastroController as lc">
+      <div class="form-group" ng-class="{ 'has-error': form.nomeEmpresa.$dirty && (form.nomeEmpresa.$error.required) }">
+          <label class="item item-input"><input type="text" placeholder="Nome Empresa" name="nomeEmpresa" id="nomeEmpresa" class="form-control" ng-model="lc.empresa.nome" required > </label>
+          <span ng-show="form.nomeEmpresa.$dirty && form.nomeEmpresa.$error.required" class="help-block">Nome Empresa e obrigatorio</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.nomeResponsavel.$dirty && (form.nomeResponsavel.$error.required) }">
+          <label class="item item-input"><input type="text" placeholder="Nome Responsavel" name="nomeResponsavel" id="nomeResponsavel" class="form-control" ng-model="lc.empresa.nomeResponsavel" required > </label>
+          <span ng-show="form.nomeResponsavel.$dirty && form.nomeResponsavel.$error.required" class="help-block">Nome Responsavel e obrigatorio</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && (form.email.$error.required || form.email.$error.email) }">
+          <label class="item item-input"><input type="email" placeholder="Endereço Email" name="email" id="email" class="form-control" ng-model="lc.empresa.email" required > </label>
+          <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+          <span ng-show="form.email.$dirty && form.email.$error.email" class="help-block">Email is invalid</span>
+      </div>
       <label class="item item-input" id="tab4DefaultPage-input6" name="Telefone">
         <input type="tel" placeholder="Telefone">
       </label>
-      <label class="item item-input" id="tab4DefaultPage-search1" name="cep">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="Cep">
-      </label>
+      <div class="form-group" ng-class="{ 'has-error': form.telefone.$dirty && (form.telefone.$error.required) }">
+          <label class="item item-input"><input type="text" placeholder="Telefone" name="telefone" id="telefone" class="form-control" ng-model="lc.empresa.telefone" required > </label>
+          <span ng-show="form.telefone.$dirty && form.telefone.$error.required" class="help-block">Telefone e obrigatorio</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.cep.$dirty && (form.cep.$error.required) }">
+          <label class="item item-input" id="tab4DefaultPage-search1" name="cep">
+              <i class="icon ion-search placeholder-icon"></i>
+              <input type="search" placeholder="CEP" name="cep" id="cep" class="form-control" ng-model="lc.empresa.endereco.cep" required >
+                  
+          </label>
+          <span ng-show="form.cep.$dirty && form.cep.$error.required" class="help-block">Cep e obrigatorio</span>
+      </div>
       <label class="item item-input" id="tab4DefaultPage-input8" name="Logradouro">
         <input type="text" placeholder="Logradouro">
       </label>
+      <div class="form-group" ng-class="{ 'has-error': form.logradouro.$dirty && (form.logradouro.$error.required) }">
+          <label class="item item-input"><input type="text" placeholder="Logradouro" name="logradouro" id="logradouro" class="form-control" ng-model="lc.empresa.endereco.logradouro" required > </label>
+          <span ng-show="form.logradouro.$dirty && form.logradouro.$error.required" class="help-block">logradouro is required</span>
+      </div>
       <label class="item item-input" id="tab4DefaultPage-input9">
-        <input type="number" placeholder="Numero">
+        <input type="number" placeholder="Numero"  ng-model="lc.empresa.endereco.numero">
       </label>
       <label class="item item-input" id="tab4DefaultPage-input10" name="Cidade">
-        <input type="text" placeholder="Cidade">
+        <input type="text" placeholder="Cidade"  ng-model="lc.empresa.endereco.cidade">
       </label>
       <label class="item item-select" id="tab4DefaultPage-select1">
         <span class="input-label"></span>
-        <select>
-          <option>MG - Minas Gerais</option>
+        <select  ng-model="lc.empresa.endereco.estado.id">
+          <option value="1">MG - Minas Gerais</option>
         </select>
       </label>
       <label class="item item-input" id="tab4DefaultPage-input12" name="Referencia">
-        <input type="text" placeholder="Referencia">
+        <input type="text" placeholder="Referencia"  ng-model="lc.empresa.endereco.referencia">
       </label>
       <div id="tab4DefaultPage-container1">
         <h5 id="tab4DefaultPage-heading1" style="color:#000000;">Aberto</h5>
-        <form id="tab4DefaultPage-form3" class="list">
           <ion-checkbox id="tab4DefaultPage-checkbox2">Dom</ion-checkbox>
           <label class="item item-input" id="tab4DefaultPage-input13">
             <span class="input-label">Hor. Abrir</span>
@@ -110,8 +125,8 @@
             <span class="input-label">Hor. Fechar</span>
             <input type="time" placeholder="Hor. Fechar">
           </label>
-        </form>
       </div>
+      <div class="loginButton"><button ng-click="lc.login()" type="button" ng-disabled="form.$invalid || dataLoading" class="button ion-unlocked button-block button-balanced"> Login</button>  </div>
     </form>
   </ion-content>
 </ion-view>

@@ -73,8 +73,9 @@ ywp2WebModule.run(['$rootScope', '$location', '$cookieStore', '$http',
         $rootScope.isSubmitted = false;
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            console.log('received event: ' + event + ' from: ' + current + ' to go to next: ' + next);
+            console.log('received event: ' + event + ' from: ' + current + ' to go to next: ' + next);debugger
             // redirect to login page if not logged in and trying to access a restricted page
+            debugger
             var restrictedPage = $.inArray($location.path(), ['/login', '/register', '/admin.login', '/adm.register', '/admin', '/app', '/dashboard']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             $rootScope.currentUser = $rootScope.globals.currentUser;
