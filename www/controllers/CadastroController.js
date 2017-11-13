@@ -18,9 +18,15 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         nome:'999999s9',
         nomeResponsavel:'99ws9s999',
         email:'wlclimaco@gmail.com',
-        telefone:'999999999'
+        telefone:'999999999',
+        horarios:[{abertura : "",fecha:""}]
     }
+    lc.createForm  = function () {
+        lc.empresa.horarios.push({abertura : "",fecha:""});
+    }
+
     lc.login = function () {
+        debugger
         console.log('received the login event for user: '+lc.empresa.nome);
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
@@ -30,7 +36,7 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
             if (resp && resp.code==200) {
                 AuthService.createJWTToken(resp.result.user, resp.result.token);
                 AuthService.setCredentials();
-                $location.path('/app');
+             //   $location.path('/app');
             } else {
                 lc.error = resp.result;
                 lc.details = resp.details;

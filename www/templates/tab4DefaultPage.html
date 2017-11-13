@@ -1,3 +1,34 @@
+<style>
+  /* Hiding the checkbox, but allowing it to be focused */
+.badgebox
+{
+    opacity: 0;
+}
+
+.badgebox + .badge
+{
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+	width: 27px;
+}
+
+.badgebox:focus + .badge
+{
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+    
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
+}
+
+.badgebox:checked + .badge
+{
+    /* Move the check mark back when checked */
+	text-indent: 0;
+}
+</style>
 <div class="tabs-striped  tabs-background-positive tabs-color-light">
     <div class="tabs">
       <a class="tab-item active" href="#/app/cadastro"><i class="icon ion-android-clipboard"></i> Cadastro </a>
@@ -38,11 +69,8 @@
           </label>
           <span ng-show="form.cep.$dirty && form.cep.$error.required" class="help-block">Cep e obrigatorio</span>
       </div>
-      <label class="item item-input" id="tab4DefaultPage-input8" name="Logradouro">
-        <input type="text" placeholder="Logradouro">
-      </label>
       <div class="form-group" ng-class="{ 'has-error': form.logradouro.$dirty && (form.logradouro.$error.required) }">
-          <label class="item item-input"><input type="text" placeholder="Logradouro" name="logradouro" id="logradouro" class="form-control" ng-model="lc.empresa.endereco.logradouro" required > </label>
+          <label class="item item-input"><input type="text" placeholder="Logradouro" name="logradouro" id="logradouro" ng-model="lc.empresa.endereco.logradouro" required > </label>
           <span ng-show="form.logradouro.$dirty && form.logradouro.$error.required" class="help-block">logradouro is required</span>
       </div>
       <label class="item item-input" id="tab4DefaultPage-input9">
@@ -60,73 +88,40 @@
       <label class="item item-input" id="tab4DefaultPage-input12" name="Referencia">
         <input type="text" placeholder="Referencia"  ng-model="lc.empresa.endereco.referencia">
       </label>
-      <div id="tab4DefaultPage-container1">
+      <div id="tab4DefaultPage-container1" class="well">
         <h5 id="tab4DefaultPage-heading1" style="color:#000000;">Aberto</h5>
-          <ion-checkbox id="tab4DefaultPage-checkbox2">Dom</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input13">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="Hor. Abrir">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input14">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="Hor. Fechar">
-          </label>
-          <ion-checkbox id="tab4DefaultPage-checkbox3">Seg</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input16">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input17">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="">
-          </label>
-          <ion-checkbox id="tab4DefaultPage-checkbox4">Ter</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input18">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input19">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="">
-          </label>
-          <ion-checkbox id="tab4DefaultPage-checkbox5">Qua</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input20">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input21">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="">
-          </label>
-          <ion-checkbox id="tab4DefaultPage-checkbox6">Qui</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input22">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input23">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="">
-          </label>
-          <ion-checkbox id="tab4DefaultPage-checkbox7">Sex</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input25">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input24">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="">
-          </label>
-          <ion-checkbox id="tab4DefaultPage-checkbox8">Sab</ion-checkbox>
-          <label class="item item-input" id="tab4DefaultPage-input26">
-            <span class="input-label">Hor. Abrir</span>
-            <input type="time" placeholder="">
-          </label>
-          <label class="item item-input" id="tab4DefaultPage-input15">
-            <span class="input-label">Hor. Fechar</span>
-            <input type="time" placeholder="Hor. Fechar">
-          </label>
+        <div ng-repeat="horasTrabalho in lc.empresa.horarios">
+          <hr/>
+                  <label class="item item-input" id="tab4DefaultPage-input10" name="Cidade">
+                    <input type="time" placeholder="Hor. Abertura" ng-model="horasTrabalho.abertura">
+                  </label>
+       
+            
+                  <label class="item item-input" id="tab4DefaultPage-input10" name="Cidade">
+                    <input type="time" placeholder="Hor. Fechar" ng-model="horasTrabalho.fecha">
+                  </label>
+            
+
+
+                        <label for="Dom" class="btn btn-danger">Dom<input ng-model="horasTrabalho.segunda" type="checkbox" id="defaults" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Seg" class="btn btn-info">Seg<input ng-model="horasTrabalho.terca" type="checkbox" id="default" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Ter" class="btn btn-info">Ter<input ng-model="horasTrabalho.quarta" type="checkbox" id="primary" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Qua" class="btn btn-info">Qua<input ng-model="horasTrabalho.quinta " type="checkbox" id="info" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Qui" class="btn btn-info">Qui<input ng-model="horasTrabalho.sexta" type="checkbox" id="success" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Sex" class="btn btn-info">Sex<input ng-model="horasTrabalho.sabado" type="checkbox" id="warning" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Sab" class="btn btn-warning">Sab<input ng-model="horasTrabalho.domingo" type="checkbox" id="danger" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>   
+           
+                <div class="row">
+                    <button type="button" ng-click="lc.createForm()" class="btn btn-warning">
+                        Incluir Horario</i>
+                    </button>     
+                    <button ng-show="$index > 0" ng-hide="$index == 0" type="button" ng-click="lc.deleteForm(horasTrabalho)" class="btn btn-danger"> Excluir Horario</i></button>
+                </div>
+</div>
+        </div>
       </div>
-      <div class="loginButton"><button ng-click="lc.login()" type="button" ng-disabled="form.$invalid || dataLoading" class="button ion-unlocked button-block button-balanced"> Login</button>  </div>
+      <div class="loginButton"><button ng-click="lc.login()" type="button" ng-disabled="form.$invalid || dataLoading" class="button ion-unlocked button-block button-balanced"> Gravar</button>  </div>
     </form>
+    <div style="margin-top:10%"></div>
   </ion-content>
 </ion-view>
