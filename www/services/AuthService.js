@@ -201,12 +201,13 @@ angular.module('App.Auth')
 
                 $.ajax
                 ({
+                   
                     type: "POST",
                     url: url,
                   dataType: 'json',
-                  async: false,
-                  
-                  data: empresa,
+                //  contentType: "charset=utf-8", 
+                  contentType: "text/plain; charset=UTF-8" ,
+                  data: JSON.stringify(empresa),
                   success: function (response){
                       debugger
                        callback(response);

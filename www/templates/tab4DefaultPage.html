@@ -90,26 +90,26 @@
       </label>
       <div id="tab4DefaultPage-container1" class="well">
         <h5 id="tab4DefaultPage-heading1" style="color:#000000;">Aberto</h5>
-        <div ng-repeat="horasTrabalho in lc.empresa.horarios">
+        <div ng-repeat="horasTrabalho in lc.empresa.horarioAberto">
           <hr/>
                   <label class="item item-input" id="tab4DefaultPage-input10" name="Cidade">
-                    <input type="time" placeholder="Hor. Abertura" ng-model="horasTrabalho.abertura">
+                    <input type="time" placeholder="Hor. Abertura" ng-model="horasTrabalho.horaInicial">
                   </label>
        
             
                   <label class="item item-input" id="tab4DefaultPage-input10" name="Cidade">
-                    <input type="time" placeholder="Hor. Fechar" ng-model="horasTrabalho.fecha">
+                    <input type="time" placeholder="Hor. Fechar" ng-model="horasTrabalho.horaFinal">
                   </label>
             
 
 
-                        <label for="Dom" class="btn btn-danger">Dom<input ng-model="horasTrabalho.segunda" type="checkbox" id="defaults" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Seg" class="btn btn-info">Seg<input ng-model="horasTrabalho.terca" type="checkbox" id="default" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Ter" class="btn btn-info">Ter<input ng-model="horasTrabalho.quarta" type="checkbox" id="primary" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Qua" class="btn btn-info">Qua<input ng-model="horasTrabalho.quinta " type="checkbox" id="info" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Qui" class="btn btn-info">Qui<input ng-model="horasTrabalho.sexta" type="checkbox" id="success" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Sex" class="btn btn-info">Sex<input ng-model="horasTrabalho.sabado" type="checkbox" id="warning" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Sab" class="btn btn-warning">Sab<input ng-model="horasTrabalho.domingo" type="checkbox" id="danger" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>   
+                        <label for="Dom" class="btn btn-danger">Dom<input ng-model="horasTrabalho.seg" type="checkbox" id="defaults" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Seg" class="btn btn-info">Seg<input ng-model="horasTrabalho.ter" type="checkbox" id="default" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Ter" class="btn btn-info">Ter<input ng-model="horasTrabalho.qua" type="checkbox" id="primary" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Qua" class="btn btn-info">Qua<input ng-model="horasTrabalho.qui " type="checkbox" id="info" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Qui" class="btn btn-info">Qui<input ng-model="horasTrabalho.sex" type="checkbox" id="success" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Sex" class="btn btn-info">Sex<input ng-model="horasTrabalho.sab" type="checkbox" id="warning" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                        <label for="Sab" class="btn btn-warning">Sab<input ng-model="horasTrabalho.dom" type="checkbox" id="danger" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>   
            
                 <div class="row">
                     <button type="button" ng-click="lc.createForm()" class="btn btn-warning">
