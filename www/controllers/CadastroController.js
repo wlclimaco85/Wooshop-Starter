@@ -7,23 +7,29 @@ angular.module('App')
 function CadastroController($scope, $rootScope, $location, AuthService) {
     var lc = this;
     lc.empresa = {
-     /*   endereco : {
+        endereco : {
             estado : {id : 1},
             cep:'9999999999',
             logradouro:'999999999',
             numero:'999999999',
             cidade:'9999999',
             referencia:'9999999',
-        }, */
-        
+        }, 
+        quadras : [{nome:"nome",descricao : "descricao",valor : 1.99,comBola : 1,valorBola : 0.51,horarioAberto:[{abertura : "",fecha:""}]}],
         nome:'999999s9',
         nomeResponsavel:'99ws9s999',
         email:'wlclimaco@gmail.com',
-        telefone:'999999999',
-        horarioAberto:[{abertura : "",fecha:""}]
+        telefone:'999999999'
+        
     }
-    lc.createForm  = function () {
-        lc.empresa.horarios.push({abertura : "",fecha:""});
+    lc.createForm  = function (oQuadra) {
+        debugger
+        oQuadra.horarioAberto.push({abertura : "",fecha:""});
+    }
+
+    lc.createFormQuadra  = function () {
+        debugger
+        lc.empresa.quadras.push({comBola : 1,horarioAberto : [{abertura : "",fecha:""}]});
     }
 
     lc.horario = function(oHorario)
@@ -40,19 +46,35 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         this.horaFinal = oHorario.horaFinal.getHours() + ":"+ oHorario.horaFinal.getMinutes();
     }
 
+    lc.quadra = function(oQuadra)
+    {
+        var oHorarios = [];
+        for(var x=0;x<oQuadra.horarioAberto.length;x++)
+        {
+            oHorarios.push(new lc.horario(oQuadra.horarioAberto[x]));
+        }
+        this.id = oQuadra.id;
+        this.nome = oQuadra.nome;
+        this.descricao = oQuadra.descricao;
+        this.horarioAberto = oHorarios ? oHorarios : null;
+        this.valor = oQuadra.valor ? parseFloat(oQuadra.valor) : 0;
+        this.comBola = oQuadra.comBola ? parseInt(oQuadra.comBola) : 0;
+        this.valorBola = oQuadra.sex ? parseFloat(oQuadra.valorBola) : 0;
+    }
+
     lc.login = function () {
         
         console.log('received the login event for user: '+lc.empresa.nome);
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
-        var oHorarios = [];
-        for(var x=0;x<lc.empresa.horarioAberto.length;x++)
+        var oQuadras = [];
+        for(var x=0;x<lc.empresa.quadras.length;x++)
         {
-            oHorarios.push(new lc.horario(lc.empresa.horarioAberto[x]));
+            oQuadras.push(new lc.quadra(lc.empresa.quadras[x]));
         }
-        debugger
-        lc.empresa.horarioAberto = [];
-        lc.empresa.horarioAberto = oHorarios;
+        
+        lc.empresa.quadras = [];
+        lc.empresa.quadras = oQuadras;
         AuthService.addEmpresa(lc.empresa, function (response) {
             
             var resp = response.data;
