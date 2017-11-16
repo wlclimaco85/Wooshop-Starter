@@ -75,6 +75,12 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         
         lc.empresa.quadras = [];
         lc.empresa.quadras = oQuadras;
+
+        $.get("http://maps.google.com/maps/api/geocode/json?address=rua.+maria+concei%C3%A7%C3%A3o+silva+686+mangueiras,+uberaba+-+mg&sensor=false", function(data, status){
+            console.log(data.results[0].geometry.location)
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+
         AuthService.addEmpresa(lc.empresa, function (response) {
             
             var resp = response.data;
