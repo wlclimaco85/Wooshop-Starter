@@ -9,7 +9,7 @@ angular.module('App.Auth')
         function (Base64, $http,  $rootScope, $timeout, BackendCfg) {
             var service = this;
             service.login = function (email, password, callback) {
-                debugger
+                
              //   BackendCfg.setupHttp($http);
                 // this.createCredentials(email, password);
                 var user = {};
@@ -214,6 +214,31 @@ angular.module('App.Auth')
                   }
               });
             }; 
+            service.fetchAllEmpresa = function (empresa, callback) {
+                BackendCfg.setupHttp($http);
+                
+                // this.createCredentials(user.email, user.password);
+
+               // var aesPack = this.encryptPassword(user.password);
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/empresa/fetchAllEmpresa'
+
+                $.ajax
+                ({
+                   
+                    type: "POST",
+                    url: 'http://localhost:8080/empresa/fetchAllEmpresa',
+                  dataType: 'json',
+                //  contentType: "charset=utf-8", 
+                  contentType: "text/plain; charset=UTF-8" ,
+                 // data: JSON.stringify(empresa),
+                  success: function (response){
+                      debugger
+                       callback(response);
+                  }
+              });
+            };
             service.encryptPassword = function (password) {
                 var aesPack = {};
                 var iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
