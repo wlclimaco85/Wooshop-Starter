@@ -8,18 +8,19 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
     var lc = this;
     lc.empresa = {
         endereco : {
-            estado : {id : 1},
-            cep:'9999999999',
-            logradouro:'999999999',
-            numero:'999999999',
-            cidade:'9999999',
-            referencia:'9999999',
+            estado : {id : 1,sigla:"MG"},
+            cep:'38082243',
+            logradouro:'herminio pinti',
+            bairro:"vila alvorada",
+            numero:'199',
+            cidade:'Uberaba',
+            referencia:'Proximo a fazu'
         }, 
         quadras : [{nome:"nome",descricao : "descricao",valor : 1.99,comBola : 1,valorBola : 0.51,horarioAberto:[{abertura : "",fecha:""}]}],
-        nome:'999999s9',
-        nomeResponsavel:'99ws9s999',
+        nome:'Quadra 0001',
+        nomeResponsavel:'Responsavel 0001',
         email:'wlclimaco@gmail.com',
-        telefone:'999999999'
+        telefone:'34988406670'
         
     }
     lc.createForm  = function (oQuadra) {
@@ -56,6 +57,8 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         this.id = oQuadra.id;
         this.nome = oQuadra.nome;
         this.descricao = oQuadra.descricao;
+        this.tempoJogo = 60;//oQuadra.tempoJogo ;
+        this.intervalo = 0;//oQuadra.intervalo;
         this.horarioAberto = oHorarios ? oHorarios : null;
         this.valor = oQuadra.valor ? parseFloat(oQuadra.valor) : 0;
         this.comBola = oQuadra.comBola ? parseInt(oQuadra.comBola) : 0;
@@ -67,27 +70,35 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         console.log('received the login event for user: '+lc.empresa.nome);
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
-        var oQuadras = [];
-        for(var x=0;x<lc.empresa.quadras.length;x++)
-        {
-            oQuadras.push(new lc.quadra(lc.empresa.quadras[x]));
-        }
         
-        lc.empresa.quadras = [];
-        lc.empresa.quadras = oQuadras;
-        AuthService.addEmpresa(lc.empresa, function (response) {
-            
-            var resp = response.data;
-            if (resp && resp.code==200) {
-                AuthService.createJWTToken(resp.result.user, resp.result.token);
-                AuthService.setCredentials();
-             //   $location.path('/app');
-            } else {
-                lc.error = resp.result;
-                lc.details = resp.details;
-                lc.dataLoading = false;
-                $rootScope.isSubmitted = false;
+        $.get("http://maps.google.com/maps/api/geocode/json?address="+lc.empresa.endereco.logradouro+"+"+lc.empresa.endereco.numero+"+"+lc.empresa.endereco.bairro+",+"+lc.empresa.endereco.cidade+"+-+"+lc.empresa.endereco.estado.sigla+"&sensor=false", function(data, status){
+            console.log(data.results[0].geometry.location)
+
+            lc.empresa.endereco.lat   = data.results[0].geometry.location.lat;
+            lc.empresa.endereco.longi = data.results[0].geometry.location.lng;
+
+            var oQuadras = [];
+            for(var x=0;x<lc.empresa.quadras.length;x++)
+            {
+                oQuadras.push(new lc.quadra(lc.empresa.quadras[x]));
             }
+            
+            lc.empresa.quadras = [];
+            lc.empresa.quadras = oQuadras;
+            AuthService.addEmpresa(lc.empresa, function (response) {
+                
+                var resp = response.data;
+                if (resp && resp.code==200) {
+                    AuthService.createJWTToken(resp.result.user, resp.result.token);
+                    AuthService.setCredentials();
+                //   $location.path('/app');
+                } else {
+                    lc.error = resp.result;
+                    lc.details = resp.details;
+                    lc.dataLoading = false;
+                    $rootScope.isSubmitted = false;
+                }
+            });
         });
     };
 };
