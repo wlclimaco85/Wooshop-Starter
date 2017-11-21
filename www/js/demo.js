@@ -16,6 +16,7 @@ var app = angular.module('MobileAngularUiExamples', ['ionic',
   'App.Admin',
   'App.Auth',
   'App',
+  'App.map',
 
   // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'.
   // This is intended to provide a flexible, integrated and and

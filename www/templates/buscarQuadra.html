@@ -47,16 +47,16 @@
 	text-indent: 0;
 }
 </style>
-  </head>
-  <body>
+  </head >
+  <body >
       <ion-view title="Tab 4 Default Page" id="page5">
           <ion-content padding="true" class="has-header">
-  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%"></div>
+  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%" ng-controller="BuscaQuadraController as lc" >
   	<label class="item item-input" id="buscarQuadra-search2">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" placeholder="">
       </label>
-    <div id="map" style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 400px; width: 100%;"></div>
+    <div id="map" my-map="{teste:{lat:-99990,long:9999,name:teste}}" style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 400px; width: 100%;"></div>
 	<form id="buscarQuadra-form6" class="list">
       <div id="buscarQuadra-container3" class="creator-container">
       		<label for="Dom" class="btn btn-danger">Dom<input ng-model="horasTrabalho.seg" type="checkbox" id="defaults" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
@@ -125,126 +125,7 @@
               </div>
             </div>
             </div>
-
-    <script>
-
-      // The following example creates complex markers to indicate beaches near
-      // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
-      // to the base of the flagpole.
-      var infowindow;
-      var empresas = []
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: {lat: -19.7483300, lng: -47.9319400},
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-      
-        setMarkers(map);
-        
-
-      //  infowindow = new google.maps.InfoWindow({ map: map })
-      }
-
-      $.ajax
-                ({
-                   
-                    type: "POST",
-                    url: 'http://localhost:8080/empresa/fetchAllEmpresa',
-                  dataType: 'json',
-                  async : false,
-                  contentType: "text/plain; charset=UTF-8" ,
-                 // data: JSON.stringify(empresa),
-                  success: function (response){
-                      
-                      empresas = response;
-
-                   //   setMarkers(map);
-                  }
-              });
-
-      // Data for the markers consisting of a name, a LatLng and a zIndex for the
-      // order in which these markers should display on top of each other.
-     console.log(empresas)
-      var beaches = [
-                        ['Bondi Beach', -19.7399354, -47.9607908, 4],
-                        ['Coogee Beach', -19.7572678, -47.9503786, 5],
-                        ['Cronulla Beach', -19.7397616, -47.8912879, 3],
-                        ['Manly Beach', -19.7310001, -47.968294, 2],
-                        ['Maroubra Beach', -19.757052, -47.9480792, 1]
-                      ];
-     // var infowindow = new google.maps.InfoWindow();
-
-      function setMarkers(map) {
-        // Adds markers to the map.
-
-        // Marker sizes are expressed as a Size of X,Y where the origin of the image
-        // (0,0) is located in the top left of the image.
-
-        // Origins, anchor positions and coordinates of the marker increase in the X
-        // direction to the right and in the Y direction down.
-        var image = {
-          url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-          // This marker is 20 pixels wide by 32 pixels high.
-          size: new google.maps.Size(20, 32),
-          // The origin for this image is (0, 0).
-          origin: new google.maps.Point(0, 0),
-          // The anchor for this image is the base of the flagpole at (0, 32).
-          anchor: new google.maps.Point(0, 32)
-        };
-
-        // Display a label that indicates user's current location
-  var contentString = '<div id="content">'+
-      '<h3>' + 'This is you!' + '</h3>' +
-      '</div>';
-  var infowindow = new google.maps.InfoWindow();
-  infowindow.setContent(contentString);
-
-        // Shapes define the clickable region of the icon. The type defines an HTML
-        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-        // The final coordinate closes the poly by connecting to the first coordinate.
-        var shape = {
-          coords: [1, 1, 1, 20, 18, 20, 18, 1],
-          type: 'poly'
-        };
-        for (var i = 0; i < empresas.length; i++) {
-          var beach = empresas[i];
-          if(beach.endereco && beach.endereco.lat)
-          {
-            debugger
-          var marker = new google.maps.Marker({
-            position: {lat: parseFloat(beach.endereco.lat), lng: parseFloat(beach.endereco.longi)},
-            map: map,
-            icon: image,
-            shape: shape,
-            title: beach.nome,
-            zIndex: beach.id
-          });
-
-         bindInfoWindow(marker, map, infowindow, "<p>" + beach.nome + "</p>",beach.nome);
-        }
-      }
-      }
-
-      function bindInfoWindow(marker, map, infowindow, html, Ltitle) { 
-	    google.maps.event.addListener(marker, 'mouseover', function() {
-	
-	            infowindow.setContent(html); 
-	            infowindow.open(map, marker); 
-
-	    });
-	    google.maps.event.addListener(marker, 'mouseout', function() {
-	       infowindow.close();
-
-	    }); 
-	    //google.maps.event.addListener(marker, 'click', function() {
-	     //  alert('d')
-	    //}); 
-	}
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj5VyPaDxq8JOZkLEy78fK8YGjCNb3qGA&v=3&sensor=true&callback=initMap">
-    </script>
+          </div>
   </ion-content>
 </ion-view>
   </body>

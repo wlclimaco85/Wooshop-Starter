@@ -234,7 +234,7 @@ angular.module('App.Auth')
                   contentType: "text/plain; charset=UTF-8" ,
                  // data: JSON.stringify(empresa),
                   success: function (response){
-                      debugger
+                      
                        callback(response);
                   }
               });

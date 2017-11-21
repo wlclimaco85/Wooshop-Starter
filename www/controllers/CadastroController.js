@@ -8,7 +8,7 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
     var lc = this;
     lc.empresa = {
         endereco : {
-            estado : {id : 1,sigla:"MG"},
+            estado : {id : 1},
             cep:'38082243',
             logradouro:'herminio pinti',
             bairro:"vila alvorada",
@@ -71,7 +71,7 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         lc.dataLoading = true;
         $rootScope.isSubmitted = true;
         
-        $.get("http://maps.google.com/maps/api/geocode/json?address="+lc.empresa.endereco.logradouro+"+"+lc.empresa.endereco.numero+"+"+lc.empresa.endereco.bairro+",+"+lc.empresa.endereco.cidade+"+-+"+lc.empresa.endereco.estado.sigla+"&sensor=false", function(data, status){
+        $.get("http://maps.google.com/maps/api/geocode/json?address="+lc.empresa.endereco.logradouro+"+"+lc.empresa.endereco.numero+"+"+lc.empresa.endereco.bairro+",+"+lc.empresa.endereco.cidade+"+-+mg&sensor=false", function(data, status){
             console.log(data.results[0].geometry.location)
 
             lc.empresa.endereco.lat   = data.results[0].geometry.location.lat;
