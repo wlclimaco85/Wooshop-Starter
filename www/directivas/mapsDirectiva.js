@@ -2,17 +2,21 @@
  * Created by Y.Kamesh on 4/13/2015.
  */
 angular.module('App.map', []).
-directive('myMap', function() {
+directive('myMap', inputactionController);
+
+inputactionController.$inject = ['AuthService'];
+
+    function inputactionController(AuthService) {
     // directive link function
     debugger
-    var link = function(scope, element, attrs) {
+    var link = function(scope, element, attrs,ngModel ) {
         var map, infoWindow;
         var markers = [];
         
         // map config
         var mapOptions = {
-            center: new google.maps.LatLng(50, 2),
-            zoom: 4,
+            zoom: 12,
+            center: {lat: -19.7483300, lng: -47.9319400},
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
         };
@@ -54,9 +58,24 @@ directive('myMap', function() {
         // show the map and place some markers
         initMap();
         
-        setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
-        setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
-        setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+        AuthService.fetchAllEmpresa({}, function (response) {
+            debugger
+
+
+           scope.$apply(function() {
+            scope.empresaList = response;
+        });
+            for(var x = 0;x< response.length;x++)
+            {
+                if(response[x] && response[x].endereco)
+                {
+                    setMarker(map, new google.maps.LatLng(response[x].endereco.lat, response[x].endereco.longi), 'London', response[x].nome);
+                }
+            }
+          //  setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
+          //  setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
+          //  setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+        });
     };
     
     return {
@@ -65,5 +84,5 @@ directive('myMap', function() {
         replace: true,
         link: link
     };
-});
+};
 

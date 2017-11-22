@@ -51,12 +51,12 @@
   <body >
       <ion-view title="Tab 4 Default Page" id="page5">
           <ion-content padding="true" class="has-header">
-  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%" ng-controller="BuscaQuadraController as lc" >
+  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%" >
   	<label class="item item-input" id="buscarQuadra-search2">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" placeholder="">
       </label>
-    <div id="map" my-map="{teste:{lat:-99990,long:9999,name:teste}}" style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 400px; width: 100%;"></div>
+    <div id="map" my-map=""  ng-model="lc.empresas" datasource="lc.empresas" style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 400px; width: 100%;"></div>
 	<form id="buscarQuadra-form6" class="list">
       <div id="buscarQuadra-container3" class="creator-container">
       		<label for="Dom" class="btn btn-danger">Dom<input ng-model="horasTrabalho.seg" type="checkbox" id="defaults" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
@@ -70,59 +70,17 @@
       
     </form>
     	 <div id="menu">
-            <div class="panel list-group">
-             <a class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu"><span class="glyphicon glyphicon-option-vertical"></span> Quadra 01 - 08:30 - 09:30 <span class="label label-danger"> * Reservado</span><span class="pull-right"> <button class="btn btn-xs btn-info glyphicon glyphicon-ok" ></button> <button class="btn btn-xs btn-info glyphicon glyphicon-floppy-saved" ></button> <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
+            <div class="panel list-group">     
+             <div ng-repeat="empresa in empresaList">
+                <div ng-repeat="quadra in empresa.quadras">
+                    <div ng-repeat="jogo in quadra.jogos">
+                <a class="list-group-item" data-toggle="collapse" data-target="#sm{{jogo.id}}" data-parent="#menu"><span class="glyphicon glyphicon-option-vertical"></span> {{quadra.nome}} - 08:30 - 09:30 <span class="label label-danger"> * Reservado</span><span class="pull-right"> <button class="btn btn-xs btn-info glyphicon glyphicon-ok" ></button> <button class="btn btn-xs btn-info glyphicon glyphicon-floppy-saved" ></button> <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
+                <div id="#sm{{jogo.id}}" class="sublinks collapse">
+                  <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
+                  </div>
+                </div>
               </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm1" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 08:30 - 09:30 <span class="label label-warning"> * A Confirmar</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm1" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm2" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 01 - 09:30 - 10:30 <span class="label label-warning"> * A Confirmar</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm2" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm3" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 09:30 - 10:30 <span class="label label-success"> * Disponivel</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm3" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm4" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 01 - 10:30 - 11:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm4" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm5" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 10:30 - 11:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm5" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm6" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 01 - 11:30 - 12:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm6" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm7" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 11:30 - 12:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm7" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm8" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 13:30 - 14:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm8" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm9" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 13:30 - 14:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm9" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm10" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 14:30 - 15:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm10" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm11" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 14:30 - 15:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm11" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
-              <a class="list-group-item" data-toggle="collapse" data-target="#sm12" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Quadra 02 - 15:30 - 16:30 <span class="label label-danger"> * Reservado</span><span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
-             <div id="sm12" class="sublinks collapse">
-              <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-              </div>
+            </div>
             </div>
             </div>
           </div>
