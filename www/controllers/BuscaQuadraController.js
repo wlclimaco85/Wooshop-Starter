@@ -3,12 +3,14 @@
  */
 (function () {
 angular.module('App')
-    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService', BuscaQuadraController]);
-
+    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService', BuscaQuadraController])
 function BuscaQuadraController($scope, $rootScope, $location, AuthService) {
     var vm = this;
+
+    vm.teste = 'DOMINGO';
     vm.empresaList = [];
     $scope.empresaList =[]
+    $scope.myOrderBy = {dia : 'DOMINGO'};
       //  AuthService.fetchAllEmpresa(vm.empresa, function (response) {
       //      debugger
      //       vm.empresaList = response;
@@ -20,6 +22,19 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService) {
           //   $scope.quadras = 
          
     //    });
-    
+
+    $scope.orderByMe = function(x) {
+        debugger
+        $scope.myOrderBy = x;
+      }
+
+      $scope.checkParentID = function(value, index) {
+          debugger
+        return value.dia && ['DOMINGO','SEGUNDA'].indexOf(value.dia) !== -1;
+      }
+
+      $scope.myFilter = function (item) { 
+        return 'DOMINGO'; 
+    };
 };
 }());

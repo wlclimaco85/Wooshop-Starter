@@ -2,7 +2,36 @@
  * Created by Y.Kamesh on 4/13/2015.
  */
 angular.module('App')
-    .controller('CadastroController', ['$scope', '$rootScope', '$location', 'AuthService', CadastroController]);
+    .controller('CadastroController', ['$scope', '$rootScope', '$location', 'AuthService', CadastroController]).filter('priceGreaterThan', function () {
+        
+           return function (input, price) {
+               debugger
+               var output = [];
+               var returns = [];
+               $.each( $('#buscarQuadra-container3 .badgebox'), function( key, value ) {
+                // console.log( key + ": " + value );
+               if($(this).is(":checked")){
+                 console.log($(this).val());
+                 output.push($(this).val())}
+               })
+               for(var x = 0 ; x < input.length;x++)
+               {
+                    if( $.inArray(input[x].dia, output) !== -1 ){
+                        returns.push(input[x]);
+                    }
+               }
+          /*     
+               returns.sort(function(a, b){
+                   debugger
+                a = parseInt(a.dia);
+                b = parseInt(b.dia);
+                return a - b;
+            });
+*/
+               return returns;
+           }
+       })
+
 
 function CadastroController($scope, $rootScope, $location, AuthService) {
     var lc = this;

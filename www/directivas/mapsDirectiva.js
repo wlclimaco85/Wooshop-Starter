@@ -8,7 +8,7 @@ inputactionController.$inject = ['AuthService'];
 
     function inputactionController(AuthService) {
     // directive link function
-    debugger
+    
     var link = function(scope, element, attrs,ngModel ) {
         var map, infoWindow;
         var markers = [];
@@ -59,9 +59,7 @@ inputactionController.$inject = ['AuthService'];
         initMap();
         
         AuthService.fetchAllEmpresa({}, function (response) {
-            debugger
-
-
+            
            scope.$apply(function() {
             scope.empresaList = response;
         });
