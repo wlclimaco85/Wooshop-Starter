@@ -9,19 +9,24 @@
   </div>
 <ion-view title="Horarios" id="page2">
   <ion-content padding="true" class="has-header">
-    <ion-list id="horarios-list2">
-      <ion-item class="item-icon-right dark" id="horarios-list-item2">Seg 17:30 - 18:30
-        <button class="btn btn-info icon ion-android-add-circle" ion-button tooltip="I'm a tooltip below a button" positionV="bottom" arrow></button>
-      </ion-item>
-      <ion-item class="item-icon-right dark" id="horarios-list-item7">Seg 18:30 - 19:30
-        <button class="btn btn-info icon ion-alert"></button>
-      </ion-item>
-      <ion-item class="item-icon-right dark" id="horarios-list-item8">Seg 19:30 - 20:30
-        <button class="btn btn-info icon ion-android-add-circle"></button>
-      </ion-item>
-      <ion-item class="item-icon-right dark" id="horarios-list-item9">Seg 22:30 - 23:30
-        <button class="btn btn-info icon ion-android-add"></button>
-      </ion-item>
-    </ion-list>
+    <div id="menu"   ng-controller="HorarioController as hor" >
+
+        <div ng-repeat="quadra in hor.horarioList.quadras | orderBy:'nome'">
+    <div ng-repeat="jogo in quadra.jogos | orderBy:'status' | orderBy:'dia' | orderBy:'horaInicial'">
+      <div class="panel list-group">
+       <a class="list-group-item" data-toggle="collapse" data-target="#sm10" data-parent="#menu"><span class="glyphicon glyphicon-envelope"></span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
+       <div id="sm10" class="sublinks collapse">
+        <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
+        </div>
+       <a class="list-group-item" data-toggle="collapse" data-target="#sl1" data-parent="#menu">TASKS <span class="glyphicon glyphicon-tag pull-right"></span></a>
+       <div id="sl1" class="sublinks collapse">
+        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>
+        <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>
+       </div>
+       <a  class="list-group-item">ANOTHER LINK ...<span class="glyphicon glyphicon-stats pull-right"></span></a>
+      </div>
+      </div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

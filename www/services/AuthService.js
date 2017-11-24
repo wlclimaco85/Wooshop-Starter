@@ -265,6 +265,27 @@ angular.module('App.Auth')
                   }
               });
             };
+
+            service.fetchAllQuadraByEmpresa = function (empresa, callback) {
+                BackendCfg.setupHttp($http);
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/quadra/findAllQuadraByEmpresa'
+
+                $.ajax
+                ({
+                   
+                    type: "POST",
+                    url: url,
+                    dataType: 'json',
+                    contentType: "text/plain; charset=UTF-8" ,
+                    data: JSON.stringify(empresa),
+                    success: function (response){
+                       callback(response);
+                    }
+              });
+            };
+
             service.encryptPassword = function (password) {
                 var aesPack = {};
                 var iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);

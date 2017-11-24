@@ -3,12 +3,13 @@
  */
 
 angular.module('App.Admin')
-    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService', BuscaQuadraController])
-function BuscaQuadraController($scope, $rootScope, $location, AuthService,localStorageService,toastr) {
+    .controller('HorarioController', ['$scope', '$rootScope', '$location', 'AuthService', HorarioController])
+function HorarioController($scope, $rootScope, $location, AuthService,localStorageService,toastr) {
     var vm = this;
 
     localStorage.setItem('empresa',"TESTE")
     vm.teste = 'DOMINGO';
+    vm.horarioList = [];
  //   vm.empresaList = [];
  //   $scope.empresaList =[]
     $scope.myOrderBy = {dia : 'DOMINGO'};
@@ -40,6 +41,8 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService,localS
         this.status = oJogo.status ;
 
     }
+
+    AuthService.fetchAllQuadraByEmpresa({id:2},function(res){ console.log(res); debugger; vm.horarioList = res[0]});
 
     console.log(localStorage.getItem('empresa'))
     $scope.gravarHorario = function(jogo)
