@@ -5,7 +5,7 @@ angular.module('App')
     .controller('CadastroController', ['$scope', '$rootScope', '$location', 'AuthService', CadastroController]).filter('priceGreaterThan', function () {
         
            return function (input, price) {
-               debugger
+               
                var output = [];
                var returns = [];
                $.each( $('#buscarQuadra-container3 .badgebox'), function( key, value ) {
@@ -22,7 +22,7 @@ angular.module('App')
                }
           /*     
                returns.sort(function(a, b){
-                   debugger
+                   
                 a = parseInt(a.dia);
                 b = parseInt(b.dia);
                 return a - b;
@@ -53,12 +53,12 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         
     }
     lc.createForm  = function (oQuadra) {
-        debugger
+        
         oQuadra.horarioAberto.push({abertura : "",fecha:""});
     }
 
     lc.createFormQuadra  = function () {
-        debugger
+        
         lc.empresa.quadras.push({comBola : 1,horarioAberto : [{abertura : "",fecha:""}]});
     }
 

@@ -16,7 +16,10 @@ var app = angular.module('MobileAngularUiExamples', ['ionic',
   'App.Admin',
   'App.Auth',
   'App',
+  //'App.busca',
   'App.map',
+  'toastr',
+  'LocalStorageModule',
 
   // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'.
   // This is intended to provide a flexible, integrated and and
@@ -30,6 +33,12 @@ app.run(function($transform) {
   window.$transform = $transform;
 });
 
+//config
+app.config(['localStorageServiceProvider', function(localStorageServiceProvider)
+{
+  //sets local storage application prefix for all keys
+  localStorageServiceProvider.setPrefix('wdAppLS');
+}]);
 //
 // You can configure ngRoute as always, but to take advantage of SharedState location
 // feature (i.e. close sidebar on backbutton) you should setup 'reloadOnSearch: false'

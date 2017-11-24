@@ -45,14 +45,13 @@
 
       <ion-view title="Tab 4 Default Page" id="page5">
           <ion-content padding="true" class="has-header">
-  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%" >
+  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%"  ng-controller="BuscaQuadraController as lcA" >
   	<label class="item item-input" id="buscarQuadra-search2">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="search" placeholder="">
       </label>
-      <div >
     <div id="map" my-map=""  ng-model="" datasource="" style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 400px; width: 100%;"></div>
-	<form id="buscarQuadra-form6" class="list"   ng-controller="BuscaQuadraController as lcA">
+	<form id="buscarQuadra-form6" class="list"  >
       <label>ssss {{myOrderBy}}</label>
       <div id="buscarQuadra-container3" class="creator-container">
       		<label for="Dom" class="btn btn-danger">Dom<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender0" id="defaults"  value="DOMINGO" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
@@ -65,7 +64,7 @@
       </div>
       
     
-  </div>
+
     	 <div id="menu">
             <div class="panel list-group">     
              <div ng-repeat="empresa in empresaList | orderBy:'nome'">
@@ -77,10 +76,10 @@
                   <span ng-if="jogo.status=='DISPONIVEL'" style="font-size:8px"  class="label label-success"> * Disponivel</span>
                   
                   <span class="pull-right"> 
-                    <button ng-if="jogo.status=='DISPONIVEL'" class="btn btn-xs btn-info glyphicon glyphicon-ok" ></button>  
-                    <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> 
-                    <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button>
-                    <button ng-if="jogo.status=='ACONFIRMAR'" class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button>
+                    <button ng-if="jogo.status=='DISPONIVEL'" class="btn btn-xs btn-info glyphicon glyphicon-ok" ng-click="gravarHorario(jogo)"></button>  
+                    <button class="btn btn-xs btn-info glyphicon glyphicon-send" ng-click="gravarHorario(jogo)"></button> 
+                    <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-trash" ng-click="gravarHorario(jogo)"></button>
+                    <button ng-if="jogo.status=='ACONFIRMAR'" class="btn btn-xs btn-warning glyphicon glyphicon-trash" ng-click="gravarHorario(jogo)"></button>
                   </span>
                 </a>
                 <div id="#sm-{{jogo.id}}" class="sublinks collapse">
