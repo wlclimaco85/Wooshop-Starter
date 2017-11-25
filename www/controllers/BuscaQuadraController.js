@@ -3,9 +3,11 @@
  */
 
 angular.module('App.Admin')
-    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService', BuscaQuadraController])
-function BuscaQuadraController($scope, $rootScope, $location, AuthService,localStorageService,toastr) {
+    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService','$http','$interval', BuscaQuadraController])
+function BuscaQuadraController($scope, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
     var vm = this;
+
+    
 
     localStorage.setItem('empresa',"TESTE")
     vm.teste = 'DOMINGO';
@@ -44,23 +46,24 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService,localS
     console.log(localStorage.getItem('empresa'))
     $scope.gravarHorario = function(jogo)
     {
-        debugger
+
         jogo.status = "CONFIRMAR"
         jogo.userId = 3;
         AuthService.marcarJogo(new vm.jogo(jogo),function(res){ console.log(res)})
     }
 
     $scope.orderByMe = function(x) {
-        debugger
+        
         $scope.myOrderBy = x;
       }
 
       $scope.checkParentID = function(value, index) {
-        debugger
+        
         return value.dia && ['DOMINGO','SEGUNDA'].indexOf(value.dia) !== -1;
       }
 
       $scope.myFilter = function (item) { 
         return 'DOMINGO'; 
     };
+    
 };

@@ -21,6 +21,7 @@ var app = angular.module('MobileAngularUiExamples', ['ionic',
   'toastr',
   'LocalStorageModule',
 
+
   // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'.
   // This is intended to provide a flexible, integrated and and
   // easy to use alternative to other 3rd party libs like hammer.js, with the

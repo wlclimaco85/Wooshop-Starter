@@ -73,6 +73,7 @@ inputactionController.$inject = ['AuthService'];
           //  setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');
           //  setMarker(map, new google.maps.LatLng(52.370216, 4.895168), 'Amsterdam', 'More content');
           //  setMarker(map, new google.maps.LatLng(48.856614, 2.352222), 'Paris', 'Text here');
+          
         });
     };
     

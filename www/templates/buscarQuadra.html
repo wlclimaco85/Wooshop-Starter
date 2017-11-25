@@ -1,96 +1,73 @@
-
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    
-  /* Hiding the checkbox, but allowing it to be focused */
-.badgebox
-{
-    opacity: 0;
-}
-
-.badgebox + .badge
-{
-    /* Move the check mark away when unchecked */
-    text-indent: -999999px;
-    /* Makes the badge's width stay the same checked and unchecked */
-	width: 27px;
-}
-
-.badgebox:focus + .badge
-{
-    /* Set something to make the badge looks focused */
-    /* This really depends on the application, in my case it was: */
-    
-    /* Adding a light border */
-    box-shadow: inset 0px 0px 5px;
-    /* Taking the difference out of the padding */
-}
-
-.badgebox:checked + .badge
-{
-    /* Move the check mark back when checked */
-	text-indent: 0;
-}
-</style>
-
       <ion-view title="Tab 4 Default Page" id="page5">
           <ion-content padding="true" class="has-header">
-  	<div id="buscarQuadra-container3" class="creator-container" style="height:5%"  ng-controller="BuscaQuadraController as lcA" >
-  	<label class="item item-input" id="buscarQuadra-search2">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="">
-      </label>
-    <div id="map" my-map=""  ng-model="" datasource="" style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 400px; width: 100%;"></div>
-	<form id="buscarQuadra-form6" class="list"  >
-      <label>ssss {{myOrderBy}}</label>
-      <div id="buscarQuadra-container3" class="creator-container">
-      		<label for="Dom" class="btn btn-danger">Dom<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender0" id="defaults"  value="DOMINGO" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Seg" class="btn btn-info">Seg<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender1"    value="SEGUNDA" id="default" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Ter" class="btn btn-info">Ter<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender2"    value="TERCA" id="primary" class="badgebox" ng-true-value="'TERCA'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Qua" class="btn btn-info">Qua<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender3"    value="QUARTA" id="info" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Qui" class="btn btn-info">Qui<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender4"    value="QUINTA" id="success" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Sex" class="btn btn-info">Sex<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender5"    value="SEXTA" id="warning" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-                        <label for="Sab" class="btn btn-warning">Sab<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender6" value="SABADO" id="danger" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>  
-      </div>
-      
-    
 
-    	 <div id="menu">
-            <div class="panel list-group">     
-             <div ng-repeat="empresa in empresaList | orderBy:'nome'">
+              <div id="menu"   ng-controller="BuscaQuadraController as lcA" >
+                  <div class="panel list-group">
+                      
+                      <a class="list-group-item" data-toggle="collapse" data-target="#sl1fff" data-parent="#menu"><span class="glyphicon glyphicon-resize-vertical"></span>Filtros <span class="glyphicon glyphicon-list pull-right"></span></a>
+                      <div id="sl1fff" class="sublinks collapse in" style="border: 1px solid rgb(221, 221, 221)">
+                          <div id="buscarQuadra-container3s" class="creator-container" style="margin-top:1%;margin-left:1%;">
+                             <div id="map" my-map=""  style="margin: 0px; line-height: 250px; background-color: rgb(232, 235, 239); text-align: center; position: relative; height: 300px; width: 100%;"></div>
+                          </div>
+                          
+                          <div id="buscarQuadra-container3" class="creator-container" style="margin-top:1%;margin-left:1%;">
+                              <label for="Dom" class="btn btn-danger">Dom<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender0" id="defaults" checked="checked" value="DOMINGO" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                                            <label for="Seg" class="btn btn-info">Seg<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender1"   checked="checked"  value="SEGUNDA" id="default" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                                            <label for="Ter" class="btn btn-info">Ter<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender2"   checked="checked" value="TERCA" id="primary" class="badgebox" ng-true-value="'TERCA'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                                            <label for="Qua" class="btn btn-info">Qua<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender3"   checked="checked" value="QUARTA" id="info" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                                            <label for="Qui" class="btn btn-info">Qui<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender4"   checked="checked" value="QUINTA" id="success" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                                            <label for="Sex" class="btn btn-info">Sex<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender5"   checked="checked" value="SEXTA" id="warning" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                                            <label for="Sab" class="btn btn-warning">Sab<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender6" checked="checked" value="SABADO" id="danger" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>  
+                          </div>
+                          <div id="buscarStatus-container3" class="creator-container"  style="margin-top:1%;margin-left:1%;margin-bottom:1%;">
+                              <label for="Dom" class="btn btn-info">DISPONIVEL<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender0" id="defaults"  value="DISPONIVEL" checked="checked" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                              <label for="Seg" class="btn btn-info">ACONFIRMAR<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender1"    value="CONFIRMAR" id="default" checked="checked"  class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+                              <label for="Ter" class="btn btn-info">OCUPADO<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender2"    value="OCUPADO" id="primary" class="badgebox" checked="checked"><span class="badge">&check;</span></label>
+                              <label for="Qua" class="btn btn-info">INDISPONIVEL<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender3"    value="INDISPONIVEL" id="info" class="badgebox" checked="checked"><span class="badge">&check;</span></label>
+                                            
+                          </div>
+                      </div>
+                      
+                     </div>
+                     
+                  <div ng-repeat="empresa in empresaList | orderBy:'nome'">
                 <div ng-repeat="quadra in empresa.quadras | orderBy:'nome'">
-                    <div ng-repeat="jogo in quadra.jogos  | priceGreaterThan:'DOMINGO' | orderBy:'horaInicial' | orderBy:'dia'">
-                <a class="list-group-item" data-toggle="collapse" data-target="#sm-{{jogo.id}}" data-parent="#menu"> {{empresa.nome}} <span style="font-size:10px">{{quadra.nome}}</span> <span style="font-size:8px">{{jogo.dia}}</span> {{jogo.horaInicial}}/{{jogo.horaFinal}} 
-                  <span ng-if="jogo.status=='INDISPONIVEL'" style="font-size:8px" class="label label-danger"> * Reservado</span>
-                  <span ng-if="jogo.status=='ACONFIRMAR'"  style="font-size:8px" class="label label-warning"> * A Confirmar</span>
-                  <span ng-if="jogo.status=='DISPONIVEL'" style="font-size:8px"  class="label label-success"> * Disponivel</span>
-                  
-                  <span class="pull-right"> 
-                    <button ng-if="jogo.status=='DISPONIVEL'" class="btn btn-xs btn-info glyphicon glyphicon-ok" ng-click="gravarHorario(jogo)"></button>  
-                    <button class="btn btn-xs btn-info glyphicon glyphicon-send" ng-click="gravarHorario(jogo)"></button> 
-                    <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-trash" ng-click="gravarHorario(jogo)"></button>
-                    <button ng-if="jogo.status=='ACONFIRMAR'" class="btn btn-xs btn-warning glyphicon glyphicon-trash" ng-click="gravarHorario(jogo)"></button>
+                    <div ng-repeat="jogo in quadra.jogos  | priceGreaterThan:'DOMINGO' | filterStatus:'DOMINGO' | orderBy:'status' | orderBy:'dia' | orderBy:'horaInicial'">
+                <div class="panel list-group">
+                 <a class="list-group-item" data-toggle="collapse" data-target="#sm{{jogo.id}}" data-parent="#menu"><span class="glyphicon glyphicon-eye-open"></span><span class="pull-center"> {{quadra.nome}}   -  {{jogo.dia}} - {{jogo.horaInicial}} - {{jogo.horaFinal}} </span>  
+                  <span class="pull-right">
+                    <span ng-if="jogo.status=='INDISPONIVEL'" style="font-size:8px" class="label label-danger"> * Reservado</span>
+                    <span ng-if="jogo.status=='ACONFIRMAR'"  style="font-size:8px" class="label label-warning"> * A Confirmar</span>
+                    <span ng-if="jogo.status=='DISPONIVEL'" style="font-size:8px"  class="label label-success"> * Disponivel</span>
+                    <span ng-if="jogo.status=='OCUPADO'" style="font-size:8px" class="label label-danger"> * Reservado</span>
+                    <span ng-if="jogo.status=='CONFIRMAR'"  style="font-size:8px" class="label label-info"> * Confirmar</span>
+                   
+                    </span></a>
+                 <div id="sm{{jogo.id}}" class="sublinks collapse">
+                  <a class="list-group-item small">{{jogo.descricao}}</a>
+                  </div>
+                 <a class="list-group-item" data-toggle="collapse" data-target="#s{{jogo.id}}" data-parent="#menu">Jogadores <span class="glyphicon glyphicon-user pull-right"></span></a>
+                 <div id="s{{jogo.id}}" class="sublinks collapse">
+                  <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>
+                  <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>
+                 </div>
+                 <a  class="list-group-item">A
+                   <span class="pull-right">
+                   <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> 
+                   <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- Desmarcar -->
+                   <button ng-if="jogo.status=='CONFIRMAR'" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button><!-- Aprovar -->
+                   <button ng-if="jogo.status=='CONFIRMAR'" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- nao aprovar -->
+                   <button ng-if="jogo.status=='OCUPADO'" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button><!-- tornar disponivel -->
+                   <button ng-if="jogo.status=='DISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- marcar como ocupado -->
+                   <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button><!-- Excluir-->
                   </span>
                 </a>
-                <div id="#sm-{{jogo.id}}" class="sublinks collapse">
-                  <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
-                  </div>
                 </div>
               </div>
-            </div>
-            </div>
-            </div>
-          </form>
-          </div>
+                </div>
+                </div>
+              </div>
+
   </ion-content>
 </ion-view>
+
