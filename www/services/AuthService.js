@@ -10,25 +10,53 @@ angular.module('App.Auth')
             var service = this;
             service.login = function (email, password, callback) {
                 
-             //   BackendCfg.setupHttp($http);
+                BackendCfg.setupHttp($http);
                 // this.createCredentials(email, password);
                 var user = {};
+                var aesPack = this.encryptPassword(password);
+                user.password = password;
+                user.vpassword = '';
+                user.iv = aesPack.iv;
+                user.salt = aesPack.salt;
+                user.keySize = aesPack.keySize;
+                user.iterations = aesPack.iterations;
+                user.encryptedPassword = aesPack.ciphertext;
+                user.email = email;
+                console.log('encryptedPassword: '+user.encryptedPassword);
+                console.log('pass: '+user.password);
+                console.log('email: '+user.email);
+
+                $.ajax
+                ({
+                    type: "GET",
+                    url: 'http://localhost:8080/admin/home',
+                    data: user,
+                    dataType: 'json',              
+                  
+                  success: function (response){
+                       callback(response);
+                  }
+              });
+
+             /*   $http.post('http://localhost:8080/api/user/authenticate', user )
+                    .success(function (response) {
+                        debugger
+                        callback(response);
+                    });*/
+                console.log('login event posted...')
+
+
+             /*   var user = {};
                 var aesPack = this.encryptPassword(password);
                 user.password = password;
                 user.email = email;
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
-             /*  $http.get('http://localhost:8080/admin/home', user).then(function (response) {
-                    callback(response);
-                }, function (response) {
-                    callback(response);
-                });
-                */
-                //debugger
+
                  $.ajax
                 ({
-                    type: "GET",
-                    url: 'http://localhost:8080/admin/home',
+                    type: "POST",
+                    url: 'http://localhost:8080/user/authenticate',
                   dataType: 'json',
                   async: false,
                   
@@ -39,7 +67,7 @@ angular.module('App.Auth')
               });
 
                
-                console.log('login event posted...')
+                console.log('login event posted...') */
             };
 
             service.register = function (user, callback) {
