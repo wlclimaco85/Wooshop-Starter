@@ -43,7 +43,8 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
             bairro:"vila alvorada",
             numero:'199',
             cidade:'Uberaba',
-            referencia:'Proximo a fazu'
+            referencia:'Proximo a fazu',
+            estadoId : 1
         }, 
         quadras : [{nome:"nome",descricao : "descricao",valor : 1.99,comBola : 1,valorBola : 0.51,horarioAberto:[{abertura : "",fecha:""}]}],
         nome:'Quadra 0001',
