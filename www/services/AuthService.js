@@ -71,7 +71,96 @@ angular.module('App.Auth')
             };
 
             service.register = function (user, callback) {
+debugger
+            var userModal = function(oUser)
+            {
+                this.id = oUser.id ? parseInt(oUser.id) : null;
+                this.email = oUser.email ? oUser.email : "";
+                this.password = oUser.password ? oUser.password : null;
+                this.name = oUser.name ? oUser.name : null;
+                this.lastName = oUser.lastName ? oUser.lastName : null;
+                this.active = oUser.active ? oUser.active : 0;
+                this.roles = oUser.roles ? oUser.roles : null;
+                this.iv = oUser.iv ? oUser.iv : null;
+                this.salt = oUser.salt ? oUser.salt : null;
+                this.keySize = oUser.keySize ? oUser.keySize : 0;
+                this.iterations = oUser.iterations ? oUser.iterations : 0;
+                this.loginCount = oUser.loginCount ? oUser.loginCount : 0;
+                this.currentLoginAt = oUser.currentLoginAt ? oUser.currentLoginAt : new Date();
+                this.lastLoginAt = oUser.lastLoginAt ? oUser.lastLoginAt : new Date();
+                this.currentLoginIp = oUser.currentLoginIp ?  oUser.currentLoginIp : null;
+                this.lastLoginIp = oUser.lastLoginIp ? oUser.lastLoginIp : null;
+                this.updatedAt = oUser.updatedAt ? oUser.updatedAt : new Date();
+                this.enabled = oUser.enabled ?  oUser.enabled : 0;
+                this.encryptedPassword = oUser.encryptedPassword ? oUser.encryptedPassword : 0;
+
+            }
                 BackendCfg.setupHttp($http);
+                // this.createCredentials(user.email, user.password);
+
+                var aesPack = this.encryptPassword(user.password);
+                user.password = '';
+                user.iv = aesPack.iv;
+                user.salt = aesPack.salt;
+                user.keySize = aesPack.keySize;
+                user.iterations = aesPack.iterations;
+                user.encryptedPassword = aesPack.ciphertext;
+
+                console.log('encryptedPassword: '+user.encryptedPassword);
+                console.log('pass: '+user.password);
+                console.log('email: '+user.email);
+                console.log('displayName: '+user.displayName);
+
+                var headers = {
+                    'Access-Control-Allow-Origin' : '*',
+                    'Access-Control-Allow-Methods' : 'POST, GET, OPTIONS, PUT',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                };
+    
+                var url = 'http://localhost:8080/registration'
+                
+                                $.ajax
+                                ({
+                                    type: "POST",
+                                    url: url,
+                                    dataType: 'json',
+                                    //  contentType: "charset=utf-8", 
+                                      contentType: "text/plain; charset=UTF-8" ,
+                                  data: JSON.stringify(new userModal(user)),
+                                  success: function (response){
+                                       callback(response);
+                                  }
+                              });
+
+/*
+                    $http.post('http://localhost:8080/registration', user,headers).then(function (response) {
+                        callback(response);
+                    }, function (response) {
+                        callback(response);
+                   });
+ 
+
+
+                     $http({
+                    method: "POST",
+                    headers: headers,
+                    url: 'http://localhost:8080/registration',
+                    data: user
+            }).success(function(result) {
+                debugger
+                        console.log("Auth.signin.success!")
+                        console.log(result);
+            }).error(function(data, status, headers, config) {
+                debugger
+                        console.log("Auth.signin.error!")
+                console.log(data);
+                console.log(status);
+                console.log(headers);
+                console.log(config);
+            });
+
+               BackendCfg.setupHttp($http);
                 // this.createCredentials(user.email, user.password);
 
                // var aesPack = this.encryptPassword(user.password);
@@ -96,7 +185,7 @@ angular.module('App.Auth')
                   success: function (response){
                        callback(response);
                   }
-              });
+              }); */
         /*
               $http.post(url, user).then(function (response) {
                 callback(response);

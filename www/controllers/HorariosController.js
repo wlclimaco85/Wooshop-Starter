@@ -99,7 +99,7 @@ function HorarioController($scope, $rootScope, $location, AuthService,localStora
 
     }
 
-    AuthService.fetchAllQuadraByEmpresa({id:82},function(res){ console.log(res);  vm.horarioList = res[0]});
+    AuthService.fetchAllQuadraByEmpresa({id:1},function(res){ console.log(res);  vm.horarioList = res[0]});
 
     console.log(localStorage.getItem('empresa'))
     $scope.gravarHorario = function(jogo)
