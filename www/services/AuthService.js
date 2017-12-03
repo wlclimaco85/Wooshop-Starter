@@ -14,7 +14,7 @@ angular.module('App.Auth')
                 // this.createCredentials(email, password);
                 var user = {};
                 var aesPack = this.encryptPassword(password);
-                user.password = password;
+                
                 user.vpassword = '';
                 user.iv = aesPack.iv;
                 user.salt = aesPack.salt;
@@ -22,6 +22,7 @@ angular.module('App.Auth')
                 user.iterations = aesPack.iterations;
                 user.encryptedPassword = aesPack.ciphertext;
                 user.email = email;
+                user.password = aesPack.ciphertext;
                 console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
