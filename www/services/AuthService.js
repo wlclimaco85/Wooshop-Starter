@@ -434,6 +434,7 @@ debugger
             };
 
             service.createJWTToken = function (user, token) {
+                debugger
                 $rootScope.globals = {
                     currentUser: user,
                     token: token
