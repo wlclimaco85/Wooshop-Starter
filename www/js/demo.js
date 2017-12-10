@@ -342,7 +342,8 @@ function ($rootScope, $location, $cookieStore, $http) {
       //  var aa = ['','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app'];
      //   aa.indexOf('d')
 
-        var restrictedPage = $.inArray(sPath, ['/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+        var restrictedPage = $.inArray(sPath, ['/dashboard','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+       
         var loggedIn = $rootScope.globals.currentUser;
         $rootScope.currentUser = $rootScope.globals.currentUser;
         if (restrictedPage && !loggedIn) {

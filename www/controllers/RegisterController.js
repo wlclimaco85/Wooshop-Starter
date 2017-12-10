@@ -4,8 +4,8 @@
 angular.module('App.Auth')
     .controller('RegisterController', RegisterController);
 
-RegisterController.$inject = ['$location', '$scope', '$rootScope', 'AuthService', 'FlashMessage'];
-function RegisterController($location, $scope, $rootScope, AuthService, FlashMessage) {
+RegisterController.$inject = ['$location', '$scope', '$rootScope', 'AuthService', 'FlashMessage', '$state'];
+function RegisterController($location, $scope, $rootScope, AuthService, FlashMessage, $state,localStorageService,toastr) {
     var rc = this;
     console.log('register controller');
     rc.register = function (admin) {
@@ -15,10 +15,14 @@ function RegisterController($location, $scope, $rootScope, AuthService, FlashMes
         rc.user.admin = admin;
         AuthService.register(rc.user, function (response) {
             if (response.code==200) {
-                debugger
                 AuthService.createJWTToken(response.result.user, response.result.token);
                 AuthService.setCredentials();
-                $location.path('app/dashboard');
+                $location.path('/dashboard');
+
+                var loginUrl=$location.absUrl() + '/dashboard';
+
+                $state.go("app.dashboard");
+
             } else {
                 rc.error = response.result;
                 rc.details = response.details;

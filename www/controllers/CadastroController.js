@@ -63,38 +63,6 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
         lc.empresa.quadras.push({comBola : 1,horarioAberto : [{abertura : "",fecha:""}]});
     }
 
-    lc.horario = function(oHorario)
-    {
-       // this.id = oHorario.id;
-        this.dom = oHorario.dom ? parseInt(oHorario.dom) : 0;
-        this.seg = oHorario.seg ? parseInt(oHorario.seg) : 0;
-        this.ter = oHorario.ter ? parseInt(oHorario.ter) : 0;
-        this.qua = oHorario.qua ? parseInt(oHorario.qua) : 0;
-        this.qui = oHorario.qui ? parseInt(oHorario.qui) : 0;
-        this.sex = oHorario.sex ? parseInt(oHorario.sex) : 0;
-        this.sab = oHorario.sab ? parseInt(oHorario.sab) : 0;
-        this.horaInicial = oHorario.horaInicial.getHours() + ":"+ oHorario.horaInicial.getMinutes();
-        this.horaFinal = oHorario.horaFinal.getHours() + ":"+ oHorario.horaFinal.getMinutes();
-    }
-
-    lc.quadra = function(oQuadra)
-    {
-        var oHorarios = [];
-        for(var x=0;x<oQuadra.horarioAberto.length;x++)
-        {
-            oHorarios.push(new lc.horario(oQuadra.horarioAberto[x]));
-        }
-        this.id = oQuadra.id;
-        this.nome = oQuadra.nome;
-        this.descricao = oQuadra.descricao;
-        this.tempoJogo = 60;//oQuadra.tempoJogo ;
-        this.intervalo = 0;//oQuadra.intervalo;
-        this.horarioAberto = oHorarios ? oHorarios : null;
-        this.valor = oQuadra.valor ? parseFloat(oQuadra.valor) : 0;
-        this.comBola = oQuadra.comBola ? parseInt(oQuadra.comBola) : 0;
-        this.valorBola = oQuadra.sex ? parseFloat(oQuadra.valorBola) : 0;
-    }
-
     lc.login = function () {
         
         console.log('received the login event for user: '+lc.empresa.nome);

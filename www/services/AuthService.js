@@ -5,8 +5,8 @@
 
 'use strict';
 angular.module('App.Auth')
-    .service('AuthService', ['Base64', '$http',  '$rootScope', '$timeout', 'BackendCfg',
-        function (Base64, $http,  $rootScope, $timeout, BackendCfg) {
+    .service('AuthService', ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout', 'BackendCfg',
+        function (Base64, $http, $cookieStore, $rootScope, $timeout, BackendCfg) {
             var service = this;
             service.login = function (email, password, callback) {
                 
@@ -22,7 +22,7 @@ angular.module('App.Auth')
                 user.iterations = aesPack.iterations;
                 user.encryptedPassword = aesPack.ciphertext;
                 user.email = email;
-                user.password = aesPack.ciphertext;
+                user.password = password;
                 console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
@@ -72,30 +72,7 @@ angular.module('App.Auth')
             };
 
             service.register = function (user, callback) {
-debugger
-            var userModal = function(oUser)
-            {
-                this.id = oUser.id ? parseInt(oUser.id) : null;
-                this.email = oUser.email ? oUser.email : "";
-                this.password = oUser.password ? oUser.password : null;
-                this.name = oUser.name ? oUser.name : null;
-                this.lastName = oUser.lastName ? oUser.lastName : null;
-                this.active = oUser.active ? oUser.active : 0;
-                this.roles = oUser.roles ? oUser.roles : null;
-                this.iv = oUser.iv ? oUser.iv : null;
-                this.salt = oUser.salt ? oUser.salt : null;
-                this.keySize = oUser.keySize ? oUser.keySize : 0;
-                this.iterations = oUser.iterations ? oUser.iterations : 0;
-                this.loginCount = oUser.loginCount ? oUser.loginCount : 0;
-                this.currentLoginAt = oUser.currentLoginAt ? oUser.currentLoginAt : new Date();
-                this.lastLoginAt = oUser.lastLoginAt ? oUser.lastLoginAt : new Date();
-                this.currentLoginIp = oUser.currentLoginIp ?  oUser.currentLoginIp : null;
-                this.lastLoginIp = oUser.lastLoginIp ? oUser.lastLoginIp : null;
-                this.updatedAt = oUser.updatedAt ? oUser.updatedAt : new Date();
-                this.enabled = oUser.enabled ?  oUser.enabled : 0;
-                this.encryptedPassword = oUser.encryptedPassword ? oUser.encryptedPassword : 0;
-
-            }
+            
                 BackendCfg.setupHttp($http);
                 // this.createCredentials(user.email, user.password);
 
@@ -128,7 +105,7 @@ debugger
                                     dataType: 'json',
                                     //  contentType: "charset=utf-8", 
                                       contentType: "text/plain; charset=UTF-8" ,
-                                  data: JSON.stringify(new userModal(user)),
+                                  data: JSON.stringify(new qat.model.user(user)),
                                   success: function (response){
                                        callback(response);
                                   }
@@ -434,22 +411,23 @@ debugger
             };
 
             service.createJWTToken = function (user, token) {
-                debugger
                 $rootScope.globals = {
                     currentUser: user,
                     token: token
                 };
 
+                localStorage.setItem('globals',JSON.stringify($rootScope.globals));
+
             };
 
             service.setCredentials = function () {
-            //    $cookieStore.put('globals', $rootScope.globals);
+                $cookieStore.put('globals', $rootScope.globals);
             };
 
             service.clearCredentials = function () {
                 console.log("clearing credentials...");
                 $rootScope.globals = {};
-            //    $cookieStore.remove('globals');
+                $cookieStore.remove('globals');
                 $http.defaults.headers.common.Authorization = '';
 
             };

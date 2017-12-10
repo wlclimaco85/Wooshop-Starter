@@ -7,7 +7,6 @@ angular.module('App.Admin')
 function BuscaQuadraController($scope, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
     var vm = this;
 
-    
 
     localStorage.setItem('empresa',"TESTE")
     vm.teste = 'DOMINGO';
@@ -26,30 +25,17 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService,localS
          
     //    });
 
-    vm.jogo = function(oJogo)
-    {
-        this.id = oJogo.id ;
-        this.userId = oJogo.userId ;
-        this.nome = oJogo.nome ;
-        this.descricao = oJogo.descricao ;
-        this.user = oJogo.user ;
-        this.aceitaExterno = oJogo.aceitaExterno ;
-        this.confirmacao = oJogo.confirmacao ;
-        this.quadraId = oJogo.quadraId ;
-        this.horaInicial = oJogo.horaInicial ;
-        this.horaFinal = oJogo.horaFinal ;
-        this.dia = oJogo.dia ;
-        this.status = oJogo.status ;
-
-    }
+    
 
     console.log(localStorage.getItem('empresa'))
     $scope.gravarHorario = function(jogo)
     {
-
+        debugger
+        console.log($rootScope.globals.currentUser);
+        oUser = $rootScope.globals.currentUser
         jogo.status = "CONFIRMAR"
-        jogo.userId = 3;
-        AuthService.marcarJogo(new vm.jogo(jogo),function(res){ console.log(res)})
+        jogo.usersJogo = [oUser];
+        AuthService.marcarJogo(new qat.model.jogo(jogo),function(res){ console.log(res)})
     }
 
     $scope.orderByMe = function(x) {
