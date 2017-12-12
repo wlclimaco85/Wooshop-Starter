@@ -1,0 +1,21 @@
+<div class="tabs-striped  tabs-background-positive tabs-color-light">
+  <div class="tabs">
+    <a ng-if="hasRole('EMPRESA')" class="tab-item active" href="#/app/cadastro"><i class="icon ion-android-clipboard"></i> Cadastro </a>
+    <a ng-if="hasRole('EMPRESA')" class="tab-item" href="#/app/horarios"> <i class="icon ion-ios-time-outline"></i> Horarios </a>
+    <a ng-if="hasRole('ADMIN')" class="tab-item" href="#/app/bQuadra"> <i class="icon ion-ios-time-outline"></i> Buscar Quadra </a>
+    <a ng-if="hasRole('ADMIN')" class="tab-item" href="#/app/meusJogos"> <i class="icon ion-ios-time-outline"></i> Meus Jogos </a>
+    <a ng-if="hasRole('EMPRESA')  || hasRole('ADMIN')" class="tab-item" href="#/app/notificacao"> <i class="icon ion-ios-time-outline"></i> Notificações </a>
+    <a ng-if="hasRole('EMPRESA')  || hasRole('ADMIN')" class="tab-item" href="#/app/msg"> <i class="icon ion-ios-time-outline"></i> Msg </a>
+    <a ng-if="hasRole('EMPRESA')  || hasRole('ADMIN')" class="tab-item" href="#/app/fotos"> <i class="icon ion-images"></i> Fotos </a>
+  </div>
+  </div>
+<ion-view view-title="Dashboard" hide-back-button="true">
+  <ion-content>
+			<ion-card>
+					<ion-card-content>
+							<canvas id="pie" class="chart chart-pie chart-xs" chart-data="data"
+							chart-labels="labels" chart-options="options"></canvas>
+	</ion-card-content>
+</ion-card>
+  </ion-content>
+</ion-view>

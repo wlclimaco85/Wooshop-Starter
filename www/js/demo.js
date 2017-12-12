@@ -20,6 +20,9 @@ var app = angular.module('MobileAngularUiExamples', ['ionic',
   'App.map',
   'toastr',
   'LocalStorageModule',
+  'ui.bootstrap',
+  'chart.js',
+  'ngecharts',
 
 
   // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'.
@@ -246,6 +249,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('app.meusJogos', {
+    url: '/meusJogos',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/meusJogos.html'//,
+    //    controller: 'ProfileCtrl'
+      }
+    }
+  })
+  .state('app.notaJodadores', {
+    url: '/notaJodadores',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/notaJodadores.html'//,
+    //    controller: 'ProfileCtrl'
+      }
+    }
+  })
   //app/notificacao
   .state('app.notificacao', {
     url: '/notificacao',
@@ -293,15 +314,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: '/../templates/profile-detail.html'//,
-    //    controller: 'ProfileCtrl'
-      }
-    }
-  })
-  .state('app.meus.jogos', {
-    url: '/meusJogos',
-    views: {
-      'menuContent': {
-        templateUrl: '/../templates/meusJogos.html'//,
     //    controller: 'ProfileCtrl'
       }
     }
@@ -371,8 +383,8 @@ function ($rootScope, $location, $cookieStore, $http) {
 
       //  var aa = ['','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app'];
      //   aa.indexOf('d')
-
-        var restrictedPage = $.inArray(sPath, ['/dashboard','/meusJogos','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+        
+        var restrictedPage = $.inArray(sPath, ['/dashboard','/app/notaJodadores','/app/meusJogos','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
        
         var loggedIn = $rootScope.globals.currentUser;
         $rootScope.currentUser = $rootScope.globals.currentUser;
