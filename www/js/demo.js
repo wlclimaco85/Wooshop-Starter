@@ -296,6 +296,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
     //    controller: 'ProfileCtrl'
       }
     }
+  })
+  .state('app.meus.jogos', {
+    url: '/meusJogos',
+    views: {
+      'menuContent': {
+        templateUrl: '/../templates/meusJogos.html'//,
+    //    controller: 'ProfileCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/login');
@@ -304,6 +313,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.run(['$rootScope', '$location', '$cookieStore', '$http',
 function ($rootScope, $location, $cookieStore, $http) {
+       
+  		//the hasRole method that drives the hide/show of html 
+      $rootScope.hasRole = function(role) {
+       
+        $rootScope.globals = JSON.parse(localStorage.getItem('globals'));
+        var bRole = true;
+        var sRole = "";
+        if ($rootScope.globals.currentUser === undefined) {
+          return false;
+        }
+        for(var x = 0; x < $rootScope.globals.currentUser.roles.length;x++){
+          if ($rootScope.globals.currentUser.roles[x].role) {
+            bRole =  false;
+            if($rootScope.globals.currentUser.roles[x].role === role)
+              sRole =$rootScope.globals.currentUser.roles[x].role
+          }
+        }
+        if(bRole)
+          return false;
+        return sRole;
+      };	
   
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};
@@ -342,7 +372,7 @@ function ($rootScope, $location, $cookieStore, $http) {
       //  var aa = ['','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app'];
      //   aa.indexOf('d')
 
-        var restrictedPage = $.inArray(sPath, ['/dashboard','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+        var restrictedPage = $.inArray(sPath, ['/dashboard','/meusJogos','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
        
         var loggedIn = $rootScope.globals.currentUser;
         $rootScope.currentUser = $rootScope.globals.currentUser;

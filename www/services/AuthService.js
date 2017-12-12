@@ -20,9 +20,10 @@ angular.module('App.Auth')
                 user.salt = aesPack.salt;
                 user.keySize = aesPack.keySize;
                 user.iterations = aesPack.iterations;
-                user.encryptedPassword = aesPack.ciphertext;
+
                 user.email = email;
-                user.password = password;
+                user.password = '';
+                user.encryptedPassword = aesPack.ciphertext;
                 console.log('encryptedPassword: '+user.encryptedPassword);
                 console.log('pass: '+user.password);
                 console.log('email: '+user.email);
