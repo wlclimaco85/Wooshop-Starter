@@ -21,10 +21,28 @@ function LoginController($scope, $rootScope,$state, $location, AuthService) {
             
             var resp = response;
             if (resp && resp.code==200) {
+                debugger
                 AuthService.createJWTToken(resp.result.user, resp.result.token);
                 AuthService.setCredentials();
-               // $location.path('/app/dashboard');
-               $state.go("app.dashboard");
+                var a = false;
+                for(x = 0; resp.result.user.roles.length > x;x++)
+                {
+                    if(resp.result.user.roles[x].role === "ADMIN")
+                    {
+                        a = true;
+                    }
+                }
+
+                if(a)
+                {
+                    $state.go("app.meusJogos");
+                }
+                else
+                {
+                    $state.go("app.dashboard");
+                }
+
+               
             } else {
                 lc.error = resp.result;
                 lc.details = resp.details;
