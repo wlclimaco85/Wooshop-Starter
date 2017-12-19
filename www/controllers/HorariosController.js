@@ -3,7 +3,7 @@
  */
 
 angular.module('App.Admin')
-    .controller('HorarioController', ['$scope', '$rootScope', '$location', 'AuthService', HorarioController]).filter('filterStatus', function () {
+    .controller('HorarioController', ['$scope', '$rootScope', '$location', 'jogoFactory','AuthService', HorarioController]).filter('filterStatus', function () {
         
            return function (input, price) {
          //      debuggerdebugger
@@ -61,7 +61,7 @@ angular.module('App.Admin')
           $interval($scope.GenerateMapMarkers, 2000);
         }
       ])
-function HorarioController($scope, $rootScope, $location, AuthService,localStorageService,toastr) {
+function HorarioController($scope, $rootScope, $location, jogoFactory, AuthService) {
     var vm = this;
 
     localStorage.setItem('empresa',"TESTE")
@@ -70,44 +70,12 @@ function HorarioController($scope, $rootScope, $location, AuthService,localStora
  //   vm.empresaList = [];
  //   $scope.empresaList =[]
     $scope.myOrderBy = {dia : 'DOMINGO'};
-      //  AuthService.fetchAllEmpresa(vm.empresa, function (response) {
-      //      debugger
-     //       vm.empresaList = response;
-      //      $scope.empresaList = response;
-        //    if (resp && resp.code==200) {
-           //     AuthService.createJWTToken(resp.result.user, resp.result.token);
-            //    AuthService.setCredentials();
-             //   $location.path('/app');
-          //   $scope.quadras = 
-         
-    //    });
+     
+    AuthService.fetchAllQuadraByEmpresa({id:82},function(res){ console.log(res);  vm.horarioList = res[0]});
 
-    vm.jogo = function(oJogo)
+    $scope.gravarHorario = function(oJogo, sStatus)
     {
-        this.id = oJogo.id ;
-        this.userId = oJogo.userId ;
-        this.nome = oJogo.nome ;
-        this.descricao = oJogo.descricao ;
-        this.user = oJogo.user ;
-        this.aceitaExterno = oJogo.aceitaExterno ;
-        this.confirmacao = oJogo.confirmacao ;
-        this.quadraId = oJogo.quadraId ;
-        this.horaInicial = oJogo.horaInicial ;
-        this.horaFinal = oJogo.horaFinal ;
-        this.dia = oJogo.dia ;
-        this.status = oJogo.status ;
-
-    }
-
-    AuthService.fetchAllQuadraByEmpresa({id:1},function(res){ console.log(res);  vm.horarioList = res[0]});
-
-    console.log(localStorage.getItem('empresa'))
-    $scope.gravarHorario = function(jogo)
-    {
-     //   debugger
-        jogo.status = "CONFIRMAR"
-        jogo.userId = 3;
-        AuthService.marcarJogo(new vm.jogo(jogo),function(res){ console.log(res)})
+        jogoFactory.update(oJogo, sStatus);
     }
 
     $scope.orderByMe = function(x) {

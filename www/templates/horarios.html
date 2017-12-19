@@ -59,12 +59,12 @@
        <a  class="list-group-item">A
          <span class="pull-right">
          <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> 
-         <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- Desmarcar -->
-         <button ng-if="jogo.status=='CONFIRMAR'" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button><!-- Aprovar -->
-         <button ng-if="jogo.status=='CONFIRMAR'" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- nao aprovar -->
-         <button ng-if="jogo.status=='OCUPADO'" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button><!-- tornar disponivel -->
-         <button ng-if="jogo.status=='DISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- marcar como ocupado -->
-         <button ng-if="jogo.status=='INDISPONIVEL'" class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button><!-- Excluir-->
+         <button ng-if="jogo.status=='INDISPONIVEL'" ng-click="gravarHorario(jogo, 'DESMARCAR')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- Desmarcar -->
+         <button ng-if="jogo.status=='CONFIRMAR'"    ng-click="gravarHorario(jogo, 'INDISPONIVEL')" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button><!-- Aprovar -->
+         <button ng-if="jogo.status=='CONFIRMAR'"    ng-click="gravarHorario(jogo, 'DISPONIVEL')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- nao aprovar -->
+         <button ng-if="jogo.status=='OCUPADO'"      ng-click="gravarHorario(jogo, 'DISPONIVEL')" class="btn btn-xs btn-success glyphicon glyphicon-ok"></button><!-- tornar disponivel -->
+         <button ng-if="jogo.status=='DISPONIVEL'"   ng-click="gravarHorario(jogo, 'OCUPADO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"></button><!-- marcar como ocupado -->
+         <button ng-if="jogo.status=='INDISPONIVEL'" ng-click="gravarHorario(jogo, 'EXCLUIR')" class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button><!-- Excluir-->
         </span>
       </a>
       </div>
