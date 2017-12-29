@@ -38,7 +38,8 @@
         this.horaInicial = oJogo.horaInicial ;
         this.horaFinal = oJogo.horaFinal ;
         this.dia = oJogo.dia ;
-        this.status = oJogo.status ;
+		this.status = oJogo.status ;
+		this.user_id =  oJogo.user_id;
 
 	};
 	

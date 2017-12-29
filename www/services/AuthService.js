@@ -1,6 +1,18 @@
 /**
  * Created by Y.Kamesh on 4/12/2015.
  * Referred: https://github.com/mpetersen/aes-example
+ * $.ajax
+                                ({
+                                    type: "POST",
+                                    url: "http://localhost:8080/jogo/createNovo",
+                                    dataType: 'json',
+                                    //  contentType: "charset=utf-8", 
+                                      contentType: "text/plain; charset=UTF-8" ,
+                                  data: JSON.stringify(new qat.model.jogo({nome:"wlclimaco@gmail.com",user_id : 15})),
+                                  success: function (response){
+                                       callback(response);
+                                  }
+                              });
  */
 
 'use strict';
@@ -108,6 +120,7 @@ angular.module('App.Auth')
                                       contentType: "text/plain; charset=UTF-8" ,
                                   data: JSON.stringify(new qat.model.user(user)),
                                   success: function (response){
+                                      debugger
                                        callback(response);
                                   }
                               });
