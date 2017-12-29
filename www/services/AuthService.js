@@ -15,6 +15,7 @@
                               });
  */
 
+
 'use strict';
 angular.module('App.Auth')
     .service('AuthService', ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout', 'BackendCfg',
