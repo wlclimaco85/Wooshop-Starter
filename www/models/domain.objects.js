@@ -31,7 +31,7 @@
         this.id = oJogo.id ;
         this.nome = oJogo.nome ;
         this.descricao = oJogo.descricao ;
-        this.usersJogo = oJogo.usersJogo ;
+       // this.usersJogo = oJogo.usersJogo ;
         this.aceitaExterno = oJogo.aceitaExterno ;
         this.confirmacao = oJogo.confirmacao ;
         this.quadraId = oJogo.quadraId ;

@@ -359,7 +359,7 @@ angular.module('App.Auth')
                 
                 var authorizationBasic = 'bXVrZXNoOm0xMjM=';
                 var url = 'http://localhost:8080/jogo/update'
-
+debugger
                 $.ajax
                 ({
                    

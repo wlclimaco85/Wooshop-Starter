@@ -78,7 +78,7 @@ function CadastroController($scope, $rootScope, $location, AuthService) {
             var oQuadras = [];
             for(var x=0;x<lc.empresa.quadras.length;x++)
             {
-                oQuadras.push(new lc.quadra(lc.empresa.quadras[x]));
+                oQuadras.push(new qat.model.quadra(lc.empresa.quadras[x]));
             }
             
             lc.empresa.quadras = [];

@@ -3,8 +3,8 @@
  */
 
 angular.module('App.Admin')
-    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService','$http','$interval', BuscaQuadraController])
-function BuscaQuadraController($scope, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
+    .controller('BuscaQuadraController', ['$scope', '$rootScope', '$location', 'AuthService','$http','$interval', 'jogoFactory', BuscaQuadraController])
+function BuscaQuadraController($scope, $rootScope, $location, AuthService, $http, $interval, jogoFactory,localStorageService,toastr) {
     var vm = this;
 
 
@@ -28,14 +28,9 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService,localS
     
 
     console.log(localStorage.getItem('empresa'))
-    $scope.gravarHorario = function(jogo)
+    $scope.gravarHorario = function(oJogo, sStatus)
     {
-        debugger
-        console.log($rootScope.globals.currentUser);
-        oUser = $rootScope.globals.currentUser
-        jogo.status = "CONFIRMAR"
-        jogo.usersJogo = [oUser];
-        AuthService.marcarJogo(new qat.model.jogo(jogo),function(res){ console.log(res)})
+        jogoFactory.update(oJogo, sStatus);
     }
 
     $scope.orderByMe = function(x) {
