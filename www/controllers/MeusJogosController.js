@@ -7,66 +7,6 @@ angular.module('App.Admin')
 function MeusJogosController($scope, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
     var evm = this;				
 	evm.combo = {};
-			
-	evm.combo.options = {
-		tooltip : {
-			trigger: 'axis'
-		},
-		toolbox: {
-			show : true,
-			feature : {
-				dataView : {show: true, readOnly: false, title: "data",  lang:['Data View', 'close', 'refresh']},
-				magicType: {show: true, type: ['line', 'bar'], title: { line : 'line', bar : 'bar'}},
-				restore : {show: true, title: "restore"},
-				saveAsImage : {show: true, title: "save as image"}
-			}
-		},
-		calculable : true,
-		legend: {
-			data:['Evaporation', 'Precipitation', 'Average Temperature']
-		},
-		xAxis : [
-			{
-				type : 'category',
-				data : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-			}
-		],
-		yAxis : [
-			{
-				type : 'value',
-				name : 'Water Volume',
-				axisLabel : {
-					formatter: '{value} ml'
-				}
-			},
-			{
-				type : 'value',
-				name : 'Temperature',
-				axisLabel : {
-					formatter: '{value} °C'
-				}
-			}
-		],
-		series : [
-
-			{
-				name:'Evaporation',
-				type:'bar',
-				data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
-			},
-			{
-				name:'Precipitation',
-				type:'bar',
-				data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-			},
-			{
-				name:'Average Temperature',
-				type:'line',
-				yAxisIndex: 1,
-				data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-			}
-		]
-	};
 	
 	//===============================================================//
 	$scope.oneAtATime = true;
@@ -98,5 +38,91 @@ function MeusJogosController($scope, $rootScope, $location, AuthService,localSto
 		newItemNo = $scope.items.length + 1;
 		$scope.items.push("Item " + newItemNo);
 	};
+
+	var oUser = $rootScope.globals.currentUser;
+	var fnCallback = function(oResp)
+	{
+		//debugger 
+		var odata = [];
+		var oGols = [];
+		var oNota = [];
+		console.log(oResp);
+		$scope.jogos = oResp;
+		for(var x = 0;x < oResp.length;x++)
+		{
+			var pJogo = oResp[x];
+			for(var y = 0;y < pJogo.jogos.length;y++)
+			{
+				var oJogoData = pJogo.jogos[y]; 
+				odata.push(moment(oJogoData.data).format("DD/MM/YY") );
+				oNota.push(parseInt(oJogoData.nota,10));
+				oGols.push(oJogoData.qntGols);
+			}
+
+		}
+	//	evm.combo.options = {};
+		evm.combo.options = {
+			tooltip : {
+				trigger: 'axis'
+			},
+			toolbox: {
+				show : true,
+				feature : {
+				//	dataView : {show: true, readOnly: false, title: "data",  lang:['Data View', 'close', 'refresh']},
+					magicType: {show: true, type: ['line', 'bar'], title: { line : 'line', bar : 'bar'}},
+					restore : {show: true, title: "restore"},
+				//	saveAsImage : {show: true, title: "save as image"}
+				}
+			},
+			calculable : true,
+			legend: {
+				data:['Gols', 'Nota']
+			},
+			xAxis : [
+				{
+					type : 'category',
+					data : odata//['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+				}
+			],
+			yAxis : [
+				{
+					type : 'value',
+					name : 'Quantidade',
+					axisLabel : {
+						formatter: '{value}'
+					}
+				},
+				{
+					type : 'value',
+					name : 'Temperature',
+					axisLabel : {
+						formatter: '{value} °C'
+					}
+				}
+			],
+			series : [
+	
+				{
+					name:'Gols',
+					type:'bar',
+					data:oGols
+				},
+				{
+					name:'Nota',
+					type:'bar',
+					data:oNota
+				}
+			/*	,
+				{
+					name:'Average Temperature',
+					type:'line',
+					yAxisIndex: 1,
+					data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+				} */
+			]
+		};
+
+	}
+	AuthService.fetchJogosByUserId(oUser, fnCallback);
 
 };

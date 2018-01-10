@@ -396,6 +396,27 @@ debugger
               });
             };
 
+            service.fetchJogosByUserId = function (user, callback) {
+                BackendCfg.setupHttp($http);
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/jogo/findJogoByUser'
+
+                $.ajax
+                ({
+                   
+                    type: "POST",
+                    url: url,
+                    dataType: 'json',
+                    //  contentType: "charset=utf-8", 
+                    contentType: "text/plain; charset=UTF-8" ,
+                    data: JSON.stringify(user),
+                    success: function (response){
+                       callback(response);
+                    }
+              });
+            };
+
             service.encryptPassword = function (password) {
                 var aesPack = {};
                 var iv = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
