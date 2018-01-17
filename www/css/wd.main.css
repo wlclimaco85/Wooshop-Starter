@@ -11261,3 +11261,12 @@ body {
 .stock-grid {
   height:42vh;
 }
+
+.popover-wrapper form {
+    margin-left: -250px;
+     
+}
+
+.bg-success {
+  background-color : #FFFFFF!Important;
+}

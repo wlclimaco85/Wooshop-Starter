@@ -23,6 +23,7 @@ var app = angular.module('MobileAngularUiExamples', ['ionic',
   'ui.bootstrap',
   'chart.js',
   'ngecharts',
+  "xeditable",
 
 
   // touch/drag feature: this is from 'mobile-angular-ui.gestures.js'.
@@ -36,6 +37,10 @@ var app = angular.module('MobileAngularUiExamples', ['ionic',
 app.run(function($transform) {
   window.$transform = $transform;
 });
+
+app.run(['editableOptions', function(editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+}]);
 
 //config
 app.config(['localStorageServiceProvider', function(localStorageServiceProvider)
