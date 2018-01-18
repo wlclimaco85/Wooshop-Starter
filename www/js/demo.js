@@ -313,7 +313,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
-
+    .state('app.escolherTimeAutomatico', {
+      url: '/escolherTimeAutomatico',
+      views: {
+        'menuContent': {
+          templateUrl: '/../templates/escolherTimeAutomatico.html'//,
+     //     controller: 'ProfilesCtrl'
+        }
+      }
+    })
+//escolherTimeAutomatico
   .state('app.profile', {
     url: '/profile/:profileId',
     views: {
@@ -389,7 +398,7 @@ function ($rootScope, $location, $cookieStore, $http) {
       //  var aa = ['','/app/home' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app'];
      //   aa.indexOf('d')
         
-        var restrictedPage = $.inArray(sPath, ['/dashboard','/app/notaJodadores','/app/meusJogos','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
+        var restrictedPage = $.inArray(sPath, ['/dashboard','/app/notaJodadores','/app/escolherTimeAutomatico','/app/meusJogos','/app/login','/app/bQuadra','/app/fotos','/app/msg','/app/notificacao','/app/horarios','/app/cadastro', '/app/signup','/app/home','/app/dashboard' ,'/home', '/app/scroll', '/app/forms', '/app/toggle', '/app/tabs', '/app/dropdown','/app']) === -1;
        
         var loggedIn = $rootScope.globals.currentUser;
         $rootScope.currentUser = $rootScope.globals.currentUser;
