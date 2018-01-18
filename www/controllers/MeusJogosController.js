@@ -7,6 +7,14 @@ angular.module('App.Admin')
 function MeusJogosController($scope, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
     var evm = this;				
 	evm.combo = {};
+
+	$scope.myFilter = function (item) { 
+		return item.status === 'ACONFIRMAR'; 
+	};
+
+	$scope.myFilter2 = function (item) { 
+		return item.status === 'CONFIRMADO'; 
+	};
 	
 	//===============================================================//
 	$scope.oneAtATime = true;
