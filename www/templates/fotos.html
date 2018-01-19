@@ -1,12 +1,4 @@
-<div class="tabs-striped  tabs-background-positive tabs-color-light">
-    <div class="tabs">
-      <a class="tab-item" href="#/app/cadastro"><i class="icon ion-android-clipboard"></i> Cadastro </a>
-      <a class="tab-item" href="#/app/horarios"> <i class="icon ion-ios-time-outline"></i> Horarios </a>
-      <a class="tab-item" href="#/app/notificacao"> <i class="icon ion-ios-time-outline"></i> Notificações </a>
-      <a class="tab-item" href="#/app/msg"> <i class="icon ion-ios-time-outline"></i> Msg </a>
-      <a class="tab-item active" href="#/app/fotos"> <i class="icon ion-images"></i> Fotos </a>
-    </div>
-  </div>
+<div ng-include="'/../templates/menuButton.html'"></div>
 <ion-view title="Fotos" id="page6">
   <ion-content padding="true" class="has-header">
     <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider1" delegate-handle="slider1" id="fotos-slider1" style="width:100%;height:200px;">
