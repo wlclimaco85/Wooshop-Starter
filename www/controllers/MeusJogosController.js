@@ -3,8 +3,8 @@
  */
 
 angular.module('App.Admin')
-    .controller('MeusJogosController', ['$scope', '$rootScope', '$location', 'AuthService','$http','$interval', MeusJogosController])
-function MeusJogosController($scope, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
+    .controller('MeusJogosController', ['$scope', 'jogoFactory', '$rootScope', '$location', 'AuthService','$http','$interval', MeusJogosController])
+function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthService,localStorageService,toastr, $http, $interval) {
     var evm = this;				
 	evm.combo = {};
 
@@ -47,10 +47,12 @@ function MeusJogosController($scope, $rootScope, $location, AuthService,localSto
 		$scope.items.push("Item " + newItemNo);
 	};
 
+	
+
 	var oUser = $rootScope.globals.currentUser;
 	var fnCallback = function(oResp)
 	{
-		//debugger 
+		debugger 
 		var odata = [];
 		var oGols = [];
 		var oNota = [];
@@ -63,8 +65,8 @@ function MeusJogosController($scope, $rootScope, $location, AuthService,localSto
 			{
 				var oJogoData = pJogo.jogos[y]; 
 				odata.push(moment(oJogoData.data).format("DD/MM/YY") );
-				oNota.push(parseInt(oJogoData.nota,10));
-				oGols.push(oJogoData.qntGols);
+				oNota.push(oJogoData.nota ? parseInt(oJogoData.nota,10) : 0);
+				oGols.push(oJogoData.qntGols ? oJogoData.qntGols : 0);
 			}
 
 		}
@@ -133,4 +135,10 @@ function MeusJogosController($scope, $rootScope, $location, AuthService,localSto
 	}
 	AuthService.fetchJogosByUserId(oUser, fnCallback);
 
+	$scope.gravarHorario = function(oJogo, sStatus)
+    {
+        jogoFactory.updateJogoPorData(oJogo, sStatus, function(oResp){
+			AuthService.fetchJogosByUserId(oUser, fnCallback)
+		});
+    }
 };

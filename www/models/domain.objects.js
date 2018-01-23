@@ -42,6 +42,18 @@
 		this.user_id =  oJogo.user_id;
 
 	};
+
+	qat.model.jogoPorData = function(oJogo)
+    {
+        this.id      = oJogo.id ;
+        this.data    = oJogo.data ? oJogo.data : null;
+		this.jogoId  = oJogo.jogoId ? oJogo.jogoId : null;
+		this.status  = oJogo.status ? oJogo.status : null;
+		this.nota    = oJogo.nota ? oJogo.nota : null;
+		this.qntGols = oJogo.qntGols ? oJogo.qntGols : null;
+		this.user_id = oJogo.user_id;
+
+	};
 	
 	qat.model.user = function(oUser)
 	{

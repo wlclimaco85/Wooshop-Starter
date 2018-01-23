@@ -69,16 +69,21 @@
                           <div class="panel list-group">
                                 <div  ng-repeat="jogo in jogos | orderBy:'dia'">
                                         <div class="well" ng-repeat="jogoData in jogo.jogos | filter : myFilter   | orderBy:'data'">
-                           <a class="list-group-item" data-toggle="collapse" data-target="#sm10{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>
+                           <a class="list-group-item" data-toggle="collapse" data-target="#sm10{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span>K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
                            <div id="sm10{{jogo.id-$index}}" class="sublinks collapse">
-                            <a class="list-group-item small">ttttttttttttttttttttttttttd  ttttttttttttttttttttttttttt tttttttttttttttt</a>
+                            <a class="list-group-item small"> {{jogoData.status}} - {{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}.</a>
                             </div>
-                           <a class="list-group-item" data-toggle="collapse" data-target="#sl1" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">2</span></a>
-                           <div id="sl1" class="sublinks collapse">
-                            <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> saved tasks</a>
-                            <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> add new task</a>
-                           </div>
-                           <a  class="list-group-item">10/10/2017 <span class="pull-right">  <button uib-popover="On mouse enter!" popover-trigger="'mouseenter'" class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button uib-popover="On mouse enter 2!" popover-trigger="'mouseenter'" class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
+                           <a class="list-group-item" data-toggle="collapse" data-target="#ss{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
+                           <div id="ss{{jogo.id-$index}}" class="sublinks collapse" >
+                            <div ng-repeat="user in jogo.usersJogo">
+                                <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}} - ({{user.email}})</a>
+                
+                            </div>
+                            </div>
+                           <a  class="list-group-item">Ações <span class="pull-right"> 
+                                <button ng-click="gravarHorario(jogoData, 'CONFIRMADO')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Confirmar!"   tooltip-append-to-body="true"></button><!-- Aprovar -->
+                                <button ng-click="gravarHorario(jogoData, 'NAOVO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"   uib-tooltip="Não Vai dar!"    tooltip-append-to-body="true"></button><!-- Desmarcar -->
+                            </span></a>
                           </div>
                           </div>
                         </div>
