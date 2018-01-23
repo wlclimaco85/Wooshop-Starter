@@ -7,7 +7,7 @@ angular.module('App.Admin')
 function BuscaQuadraController($scope, $rootScope, $location, AuthService, $http, $interval, jogoFactory,localStorageService,toastr) {
     var vm = this;
 
-
+    $scope.loading = true;
     localStorage.setItem('empresa',"TESTE")
     vm.teste = 'DOMINGO';
  //   vm.empresaList = [];

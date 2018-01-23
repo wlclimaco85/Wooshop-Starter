@@ -32,6 +32,28 @@
  <div ng-include="'/../templates/menuButton.html'"></div>
 <ion-view title="Buscar Quadra" id="page5">
   <ion-content padding="true" class="has-header">
+
+    <div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/upload2">
+			<table>
+				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form>
+	</div>
+
+	<div>
+		<ul>
+			<li th:each="file : ${files}">
+				<a th:href="${file}" th:text="${file}" />
+			</li>
+		</ul>
+	</div>
+
     <form id="tab4DefaultPage-form2" class="list"  ng-controller="CadastroController as lc">
       <div class="form-group" ng-class="{ 'has-error': form.nomeEmpresa.$dirty && (form.nomeEmpresa.$error.required) }">
           <label class="item item-input"><input type="text" placeholder="Nome Empresa" name="nomeEmpresa" id="nomeEmpresa" class="form-control" ng-model="lc.empresa.nome" required > </label>
