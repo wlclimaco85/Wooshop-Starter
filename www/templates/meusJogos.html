@@ -68,15 +68,19 @@
                         <div id="menu">
                           <div class="panel list-group">
                                 <div  ng-repeat="jogo in jogos | orderBy:'dia'">
-                                        <div class="well" ng-repeat="jogoData in jogo.jogos | filter : myFilter   | orderBy:'data'">
-                           <a class="list-group-item" data-toggle="collapse" data-target="#sm10{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span>K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
+                                        <div class="well" ng-repeat="jogoData in jogo.jogos | filter : myFilter   | orderBy:'-data'">
+                           <a class="list-group-item" data-toggle="collapse" data-target="#sm10{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span> K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
                            <div id="sm10{{jogo.id-$index}}" class="sublinks collapse">
                             <a class="list-group-item small"> {{jogoData.status}} - {{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}.</a>
                             </div>
-                           <a class="list-group-item" data-toggle="collapse" data-target="#ss{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
-                           <div id="ss{{jogo.id-$index}}" class="sublinks collapse" >
+                           <a class="list-group-item" data-toggle="collapse" data-target="#ss{{jogoData.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
+                           <div id="ss{{jogoData.id-$index}}" class="sublinks collapse" >
                             <div ng-repeat="user in jogo.usersJogo">
-                                <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}} - ({{user.email}})</a>
+                                <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
+                                    <img ng-show="fnConfirm(jogoData.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
+                                    <img ng-show="fnConfirm(jogoData.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
+                                    <img ng-show="fnConfirm(jogoData.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
+                                </a>
                 
                             </div>
                             </div>
@@ -95,8 +99,8 @@
                           <div id="menu">
                             <div class="panel list-group">
                              <div  ng-repeat="jogo in jogos | orderBy:'dia'">
-                                    <div class="well" ng-repeat="jogoData in jogo.jogos  | filter : myFilter2 | orderBy:'data'">
-                                <a class="list-group-item" data-toggle="collapse" data-target="#sm{{jogo.id-$index}}" data-parent="#menu" style="cursor:pointer"><span class="glyphicon glyphicon-home"></span> {{jogoData.status}} - K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
+                                    <div class="well" ng-repeat="jogoData in jogo.jogos  | filter : myFilter2 | orderBy:'-data'">
+                                <a class="list-group-item" data-toggle="collapse" data-target="#sm{{jogo.id-$index}}" data-parent="#menu" style="cursor:pointer"><span class="glyphicon glyphicon-home"></span> K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
                                 <div id="sm{{jogo.id-$index}}" class="sublinks collapse">
                                         <div class="list-group-item"><span class="glyphicon glyphicon-user"></span> Nota <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.nota" e-min="0"><span class="badge badge-success">{{ jogoData.nota || '0' }}</span></a></span></div>  
                                         <div class="list-group-item"><span class="glyphicon glyphicon-user"></span> N° Gol <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0"><span class="badge badge-success">{{ jogoData.qntGols || '0' }}</span></a></span></div>      
@@ -104,8 +108,18 @@
                                        
                                 <a class="list-group-item small"></a>
                                 </div>
-                                
-                                <a  class="list-group-item"> {{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}. <span class="pull-right">  <button class="btn btn-xs btn-info glyphicon glyphicon-send" ></button> <button class="btn btn-xs btn-warning glyphicon glyphicon-trash"></button></span></a>
+                                <a class="list-group-item" data-toggle="collapse" data-target="#sds{{jogoData.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
+                           <div id="sds{{jogoData.id-$index}}" class="sublinks collapse" >
+                            <div ng-repeat="user in jogo.usersJogo">
+                                    <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
+                                            <img ng-show="fnConfirm(jogoData.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
+                                            <img ng-show="fnConfirm(jogoData.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
+                                            <img ng-show="fnConfirm(jogoData.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
+                                        </a>
+                
+                            </div>
+                            </div>
+                                <a  class="list-group-item"> {{jogoData.status}} -  {{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}. <span class="pull-right"></span></a>
                                 </div>
                             </div>
                             </div>

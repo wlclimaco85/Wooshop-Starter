@@ -9,12 +9,29 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 	evm.combo = {};
 
 	$scope.myFilter = function (item) { 
-		return item.status === 'ACONFIRMAR'; 
+		
+		return ((item.status === 'ACONFIRMAR') && (item.data > ((new Date).getDate()))); 
 	};
 
 	$scope.myFilter2 = function (item) { 
-		return item.status === 'CONFIRMADO'; 
+		
+		return (item.status === 'CONFIRMADO' || item.status === 'NAOVO'); 
 	};
+
+	$scope.fnConfirm = function (usuariosConfirm, usuariosJogo) { 
+		
+		var iReturn = 1;
+		if(usuariosConfirm ){
+			for (x in usuariosConfirm) {
+				if(usuariosJogo.id === parseInt(x,10)){
+					if(usuariosConfirm[x] === "CONFIRMADO"){ iReturn = 3 ; break}
+					else if(usuariosConfirm[x] === "NAOVO"){ iReturn = 2; break}
+					
+				}
+			}
+		}
+			return iReturn;
+	}
 	
 	//===============================================================//
 	$scope.oneAtATime = true;
@@ -52,7 +69,7 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 	var oUser = $rootScope.globals.currentUser;
 	var fnCallback = function(oResp)
 	{
-		debugger 
+		 
 		var odata = [];
 		var oGols = [];
 		var oNota = [];
