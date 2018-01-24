@@ -1,12 +1,25 @@
 
   <div ng-include="'/../templates/menuButton.html'"></div>
-<ion-view view-title="OST Team">
+<ion-view view-title="Perfil">
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="profilelist in profiles" class="item item-avatar" href="#/app/profile/{{profilelist.id}}">
 		   <img ng-src="{{profilelist.face}}">
 		   <h2>{{profilelist.name}}</h2>
-		  <p>Opensourcetechnologies ({{profilelist.deseg}})</p>
+      <p>Opensourcetechnologies ({{profilelist.deseg}})</p>
+      <div class="row">
+          <div class="list-group-item">
+              Nome      : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+              Sobrenome : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+              Email     : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+              Posição   : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+          </div>      
+      </div>
+      <div class="row">
+          <div class="list-group-item">
+              Receber Notificação      : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+          </div>      
+      </div>
       </ion-item>
     </ion-list>
   </ion-content>

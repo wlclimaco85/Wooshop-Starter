@@ -36,7 +36,7 @@
     <div th:if="${message}">
 		<h2 th:text="${message}"/>
 	</div>
-
+<!--
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/upload2">
 			<table>
@@ -44,17 +44,19 @@
 				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
 			</table>
 		</form>
-	</div>
+  </div>
+-->
 
-	<div>
-		<ul>
-			<li th:each="file : ${files}">
-				<a th:href="${file}" th:text="${file}" />
-			</li>
-		</ul>
-	</div>
 
-    <form id="tab4DefaultPage-form2" class="list"  ng-controller="CadastroController as lc">
+
+    <div   ng-controller="CadastroController as lc"> 
+        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+          <input type="text" name="extraField"/><br/><br/>
+          <input type="file" name="files"/><br/><br/>
+          <input type="file" name="files"/><br/><br/>
+          <input type="submit" value="Submit" id="btnSubmit" ng-click="lc.import()"/>
+      </form>
+      <form id="tab4DefaultPage-form2" class="list">
       <div class="form-group" ng-class="{ 'has-error': form.nomeEmpresa.$dirty && (form.nomeEmpresa.$error.required) }">
           <label class="item item-input"><input type="text" placeholder="Nome Empresa" name="nomeEmpresa" id="nomeEmpresa" class="form-control" ng-model="lc.empresa.nome" required > </label>
           <span ng-show="form.nomeEmpresa.$dirty && form.nomeEmpresa.$error.required" class="help-block">Nome Empresa e obrigatorio</span>
@@ -163,6 +165,7 @@
       </div>
       <div class="loginButton"><button ng-click="lc.login()" type="button" ng-disabled="form.$invalid || dataLoading" class="button ion-unlocked button-block button-balanced"> Gravar</button>  </div>
     </form>
+  </div>
     <div style="margin-top:10%"></div>
   </ion-content>
 </ion-view>

@@ -35,6 +35,9 @@ angular.module('App')
 
 function CadastroController($scope, $rootScope, $location, AuthService) {
     var lc = this;
+    lc.import  = function () {
+        AuthService.uploadFiles();
+    }
     lc.empresa = {
         endereco : {
             estado : {id : 1},
