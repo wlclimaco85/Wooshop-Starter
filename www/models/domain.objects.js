@@ -43,6 +43,16 @@
 
 	};
 
+	qat.model.UserJogo2 = function(oJogo)
+    {
+		this.user_id       	=  oJogo.user_id;
+		this.jogo_id		=  oJogo.jogo_id;
+		this.status_user	=  oJogo.status_user ? oJogo.status_user : "SOLICITADO";
+		this.admin			=  oJogo.admin ? oJogo.admin : "NAO";
+       
+
+	};
+
 	qat.model.jogoPorData = function(oJogo)
     {
         this.id      = oJogo.id ;

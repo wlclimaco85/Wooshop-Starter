@@ -8,14 +8,33 @@ angular.module('App.Admin', [])
 		return{
 
 			update : function(oJogo, status)
-			{
-				var oUser = $rootScope.globals.currentUser;
-				oJogo.status = status
-				oJogo.user_id = oUser.id;
-				AuthService.marcarJogo(new qat.model.jogo(oJogo),function(res)
-				{ console.log(res)
-					toastr.success('Jogo '+ status.toLowerCase() +' com sucesso!', 'Information');
-				})
+			{debugger
+				var globals = JSON.parse(localStorage.getItem('globals'));
+    			var oUser = globals.currentUser;
+				if(oJogo.status === "INDISPONIVEL"){// Solicitar participação
+					var oUserJogo = {
+						user_id    	:  oUser.id,
+						jogo_id		:  oJogo.jogo_id,
+						status_user	:  "SOLICITADO",
+						admin		:  "NAO"
+					}
+					oJogo.status = status
+					oJogo.user_id = oUser.id;
+
+					AuthService.solicitarParticipacao(new qat.model.UserJogo2(oUserJogo),function(res)
+					{ console.log(res)
+						toastr.success('Jogo '+ status.toLowerCase() +' com sucesso!', 'Information');
+					})
+				}
+				else // MArcar Quadra
+				{
+					oJogo.status = status
+					oJogo.user_id = oUser.id;
+					AuthService.marcarJogo(new qat.model.jogo(oJogo),function(res)
+					{ console.log(res)
+						toastr.success('Jogo '+ status.toLowerCase() +' com sucesso!', 'Information');
+					})
+				}
 			},
 			updateJogoPorData : function(oJogo, status, fncallBack)
 			{

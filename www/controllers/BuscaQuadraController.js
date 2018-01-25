@@ -8,29 +8,32 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService, $http
     var vm = this;
 
     $scope.loading = true;
-    localStorage.setItem('empresa',"TESTE")
+  
     vm.teste = 'DOMINGO';
  //   vm.empresaList = [];
  //   $scope.empresaList =[]
     $scope.myOrderBy = {dia : 'DOMINGO'};
-      //  AuthService.fetchAllEmpresa(vm.empresa, function (response) {
-      //      debugger
-     //       vm.empresaList = response;
-      //      $scope.empresaList = response;
-        //    if (resp && resp.code==200) {
-           //     AuthService.createJWTToken(resp.result.user, resp.result.token);
-            //    AuthService.setCredentials();
-             //   $location.path('/app');
-          //   $scope.quadras = 
+        AuthService.fetchAllEmpresa(vm.empresa, function (response) {
+            
+            vm.empresaList = response;
+            $scope.empresaList = response;
+            $scope.loading = false;
+           // if (resp && resp.code==200) {
+          //      AuthService.createJWTToken(resp.result.user, resp.result.token);
+           //     AuthService.setCredentials();
+           //     $location.path('/app');
+           //  $scope.quadras = 
          
-    //    });
+        });
 
     
 
     console.log(localStorage.getItem('empresa'))
     $scope.gravarHorario = function(oJogo, sStatus)
     {
+        $scope.loading = true;
         jogoFactory.update(oJogo, sStatus);
+        $scope.loading = false;
     }
 
     $scope.orderByMe = function(x) {

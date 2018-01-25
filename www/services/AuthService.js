@@ -415,6 +415,32 @@ angular.module('App.Auth')
               });
             };
 
+            service.solicitarParticipacao = function (jogo, callback) {
+                BackendCfg.setupHttp($http);
+                
+                // this.createCredentials(user.email, user.password);
+
+               // var aesPack = this.encryptPassword(user.password);
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/jogo/insertUserJogo'
+
+                $.ajax
+                ({
+                   
+                    type: "POST",
+                    url: url,
+                    dataType: 'json',
+                    //  contentType: "charset=utf-8", 
+                      contentType: "text/plain; charset=UTF-8" ,
+                      data: JSON.stringify(jogo),
+                  success: function (response){
+                      
+                       callback(response);
+                  }
+              });
+            };
+
             service.marcarJogoPorData = function (jogo, callback) {
                 BackendCfg.setupHttp($http);
                 
