@@ -1,24 +1,22 @@
 
   <div ng-include="'/../templates/menuButton.html'"></div>
 <ion-view view-title="Perfil">
-  <ion-content>
+  <ion-content >
     <ion-list>
-      <ion-item ng-repeat="profilelist in profiles" class="item item-avatar" href="#/app/profile/{{profilelist.id}}">
-		   <img ng-src="{{profilelist.face}}">
-		   <h2>{{profilelist.name}}</h2>
-      <p>Opensourcetechnologies ({{profilelist.deseg}})</p>
+      <ion-item class="item item-avatar">
+      <div data-ng-controller="PerfilController">  
       <div class="row">
           <div class="list-group-item">
-              Nome      : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
-              Sobrenome : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
-              Email     : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
-              Posição   : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+            <div class="row">  <div class="col-sm-4"><label>Nome      : </label></div><div class="col-sm-8 pull-right"><span><a href="#" editable-text="user.name" >{{ user.name || '0' }}</a></span></div></div>
+            <div class="row">  <div class="col-sm-4"><label>Sobrenome : </label></div><div class="col-sm-8 pull-right"><span><a href="#" editable-text="user.lastName" >{{ user.lastName || '0' }}</a></span></div></div>
+            <div class="row">  <div class="col-sm-4"><label>Email     : </label></div><div class="col-sm-8 pull-right"><span><a href="#" editable-text="user.email" >{{ user.email || '0' }}</a></span></div></div>
           </div>      
       </div>
       <div class="row">
           <div class="list-group-item">
-              Receber Notificação      : <span class="pull-right popover-wrapper"><a href="#" style="width:50px" editable-number="jogoData.qntGols" e-min="0">{{ jogoData.qntGols || '0' }}</a></span>
+            <div class="row">  <div class="col-sm-4"><label>Receber Notificações : </label></div><div class="col-sm-8 pull-right"><span><a href="#" editable-checkbox="user.receberNotificacoes">{{ user.receberNotificacoes && "Sim" || "Não" }}</a></span></div></div>
           </div>      
+      </div>
       </div>
       </ion-item>
     </ion-list>
