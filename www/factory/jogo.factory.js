@@ -14,7 +14,7 @@ angular.module('App.Admin', [])
 				if(oJogo.status === "INDISPONIVEL"){// Solicitar participação
 					var oUserJogo = {
 						user_id    	:  oUser.id,
-						jogo_id		:  oJogo.jogo_id,
+						jogo_id		:  oJogo.id,
 						status_user	:  "SOLICITADO",
 						admin		:  "NAO"
 					}
@@ -42,6 +42,18 @@ angular.module('App.Admin', [])
 				oJogo.status = status
 				oJogo.user_id = oUser.id;
 				AuthService.marcarJogoPorData(new qat.model.jogoPorData(oJogo),function(res)
+				{ console.log(res)
+					toastr.success('Jogo '+ status.toLowerCase() +' com sucesso!', 'Information');
+				//	fncallBack(res);
+				})
+			},
+
+			aprovarJogador : function(oJogo, status, fncallBack)
+			{
+				var oUser = $rootScope.globals.currentUser;
+				oJogo.status_user = status
+				oJogo.user_id = oUser.id;
+				AuthService.aprovarJogador(new qat.model.UserJogo2(oJogo),function(res)
 				{ console.log(res)
 					toastr.success('Jogo '+ status.toLowerCase() +' com sucesso!', 'Information');
 				//	fncallBack(res);

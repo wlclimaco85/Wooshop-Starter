@@ -1,7 +1,7 @@
 /**
  * Created by Y.Kamesh on 4/13/2015.
  */
-angular.module('App.map', []).directive('loading', function () {
+angular.module('App.loadings', []).directive('loading', function () {
       return {
         restrict: 'E',
         replace:true,

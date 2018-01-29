@@ -63,23 +63,30 @@
                     <div id="menu">
                         <div class="panel list-group">
                             <div ng-repeat="jogo in jogos | orderBy:'dia'">
-                                <div class="well" ng-repeat="jogoData in jogo.jogos | filter : myFilter   | orderBy:'-data'">
-                                    <a class="list-group-item" data-toggle="collapse" data-target="#sm100{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span> K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
+                                <div class="well" ng-repeat="jogoDatas in jogo.usersJogo2 | filter : myFilterUserJogo   | orderBy:'-id'">
+                                    <a class="list-group-item" data-toggle="collapse" data-target="#sm100{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span> K10 SPORTS QUADRA-1</a>
                                     <div id="sm100{{jogo.id-$index}}" class="sublinks collapse">
                                         <a class="list-group-item small"> </a>
                                     </div>
-                                    <a class="list-group-item" data-toggle="collapse" data-target="#sss{{jogoData.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
-                                    <div id="sss{{jogoData.id-$index}}" class="sublinks collapse">
+                                    <a class="list-group-item" data-toggle="collapse" data-target="#sss{{jogoDatas.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
+                                    <div id="sss{{jogoDatas.id-$index}}" class="sublinks collapse">
                                         <div ng-repeat="user in jogo.usersJogo">
-                                            <a class="list-group-item small"><span class="pull-left"> {{user.name}} {{user.lastName}} </span><span class="pull-center"><img ng-show="fnConfirm(jogoData.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" ></span><span class="pull-right fa">
-                                    <button ng-click="gravarHorario(jogoData, 'CONFIRMADO')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Confirmar!"   tooltip-append-to-body="true"></button><!-- Aprovar -->
-                                    <button ng-click="gravarHorario(jogoData, 'RECUSADO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"   uib-tooltip="Não Vai dar!"    tooltip-append-to-body="true"></button><!-- Desmarcar --></span>
+                                            <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
+                                    <img ng-show="fnConfirm(jogoDatas.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
+                                    <img ng-show="fnConfirm(jogoDatas.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
+                                    <img ng-show="fnConfirm(jogoDatas.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
                                 </a>
 
+                                        </div>      
+                                                
+
+                            
                                         </div>
-                                    </div>
-                                    <a class="list-group-item">{{jogoData.status}} - {{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}. <span class="pull-right"> 
-                            </span></a>
+                                        <a class="list-group-item">{{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}. <span class="pull-right"> 
+                                            <button ng-click="aprovarJogador(jogoDatas, 'CONFIRMADO')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Aprovar!"   tooltip-append-to-body="true"></button><!-- Aprovar -->
+                                            <button ng-click="aprovarJogador(jogoDatas, 'RECUSADO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"     uib-tooltip="Resusar!"   tooltip-append-to-body="true"></button><!-- Desmarcar -->
+                                        </span></a>
+                                    
                                 </div>
                             </div>
                         </div>

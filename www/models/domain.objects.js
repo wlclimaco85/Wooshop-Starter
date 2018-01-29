@@ -45,6 +45,7 @@
 
 	qat.model.UserJogo2 = function(oJogo)
     {
+		oJogo.id ? this.id          	=  oJogo.id : null;
 		this.user_id       	=  oJogo.user_id;
 		this.jogo_id		=  oJogo.jogo_id;
 		this.status_user	=  oJogo.status_user ? oJogo.status_user : "SOLICITADO";

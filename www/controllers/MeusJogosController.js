@@ -13,6 +13,11 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 		return ((item.status === 'ACONFIRMAR') && (item.data > ((new Date).getDate()))); 
 	};
 
+	$scope.myFilterUserJogo = function (item) { 
+		
+		return ((item.status_user === 'SOLICITADO')); 
+	};
+
 	$scope.myFilter2 = function (item) { 
 		
 		return (item.status === 'CONFIRMADO' || item.status === 'NAOVO'); 
@@ -157,5 +162,15 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
         jogoFactory.updateJogoPorData(oJogo, sStatus, function(oResp){
 			AuthService.fetchJogosByUserId(oUser, fnCallback)
 		});
-    }
+	}
+
+	$scope.aprovarJogador = function(oJogo, sStatus)
+    {
+		
+        jogoFactory.aprovarJogador(oJogo, sStatus, function(oResp){
+			AuthService.fetchJogosByUserId(oUser, fnCallback)
+		});
+	}
+	
+	
 };
