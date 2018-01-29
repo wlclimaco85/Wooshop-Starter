@@ -8,7 +8,7 @@ angular.module('App.Admin', [])
 		return{
 
 			update : function(oJogo, status)
-			{debugger
+			{
 				var globals = JSON.parse(localStorage.getItem('globals'));
     			var oUser = globals.currentUser;
 				if(oJogo.status === "INDISPONIVEL"){// Solicitar participação
