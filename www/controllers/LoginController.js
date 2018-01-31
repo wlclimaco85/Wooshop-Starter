@@ -21,7 +21,7 @@ function LoginController($scope, $rootScope,$state, $location, AuthService) {
             
             var resp = response;
             if (resp && resp.code==200) {
-                debugger
+                
                 AuthService.createJWTToken(resp.result.user, resp.result.token);
                 AuthService.setCredentials();
                 var a = false;

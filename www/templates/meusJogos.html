@@ -62,16 +62,8 @@
 										<div id="sm100{{jogo.id-$index}}" class="sublinks collapse">
 											<a class="list-group-item small"> </a>
 										</div>
-										<a class="list-group-item" data-toggle="collapse" data-target="#sssdd{{jogoDatas.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> Jogadores <span class="badge badge-success">{{jogo.usersJogo.length}}</span></a>
-										<div id="sssdd{{jogoDatas.id-$index}}" class="sublinks collapse">
-											<div ng-repeat="user in jogo.usersJogo">
-												<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
-												<img ng-show="fnConfirm(jogoDatas.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
-												<img ng-show="fnConfirm(jogoDatas.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
-												<img ng-show="fnConfirm(jogoDatas.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
-												</a>
-											</div>
-										</div>
+										<a class="list-group-item" data-toggle="collapse" data-target="#sssdd{{jogoDatas.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-user"></span> {{fnNameJogadorAprovar(jogo,jogoDatas)}} </a>
+	
 										<a class="list-group-item">
 											{{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}. 
 											<span class="pull-right">
@@ -142,9 +134,9 @@
 										<div id="sds{{jogoData.id-$index}}" class="sublinks collapse">
 											<div ng-repeat="user in jogo.usersJogo">
 												<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
-												<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
-												<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
-												<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
+												<img ng-show="fnConfirm(jogo, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
+												<img ng-show="fnConfirm(jogo, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
+												<img ng-show="fnConfirm(jogo, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
 												</a>
 											</div>
 										</div>

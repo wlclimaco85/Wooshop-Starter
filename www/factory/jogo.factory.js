@@ -49,10 +49,12 @@ angular.module('App.Admin', [])
 			},
 
 			aprovarJogador : function(oJogo, status, fncallBack)
-			{
-				var oUser = $rootScope.globals.currentUser;
+			{debugger
+				var globals = JSON.parse(localStorage.getItem('globals'));
+    			var oUser = globals.currentUser;
 				oJogo.status_user = status
-				oJogo.user_id = oUser.id;
+				oJogo.aprovadoPor = oUser.id;
+		        oJogo.aprovadoDate = new Date();
 				AuthService.aprovarJogador(new qat.model.UserJogo2(oJogo),function(res)
 				{ console.log(res)
 					toastr.success('Jogo '+ status.toLowerCase() +' com sucesso!', 'Information');

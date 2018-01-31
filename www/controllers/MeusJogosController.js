@@ -16,13 +16,15 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 
 
 	$scope.myFilter = function (item) {
-
-		return ((item.status === 'ACONFIRMAR') && (item.data > ((new Date).getDate())));
+		var globals = JSON.parse(localStorage.getItem('globals'));
+    	var oUser = globals.currentUser;
+		return ((item.status === 'ACONFIRMAR') && (item.data > ((new Date).getDate())) && (oUser.id === item.user_id));
 	};
 
 	$scope.myFilterUserJogo = function (item) {
-
-		return ((item.status_user === 'SOLICITADO'));
+		var globals = JSON.parse(localStorage.getItem('globals'));
+    	var oUser = globals.currentUser;
+		return ((item.status_user === 'SOLICITADO') && (oUser.id === item.user_id));
 	};
 
 	$scope.myFilter2 = function (item) {
@@ -30,22 +32,40 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 		return (item.status === 'CONFIRMADO' || item.status === 'NAOVO');
 	};
 
+	$scope.fnNameJogadorAprovar = function (item,jogoData) {
+
+		var sName = "";
+
+		for(var x = 0; x< item.usersJogo.length;x++)
+		{
+			if(jogoData.user_id === item.usersJogo[x].id)
+			{
+				sName = item.usersJogo[x].name +" "+ item.usersJogo[x].lastName + "(" + item.usersJogo[x].email + ")";
+			}
+		}
+		
+		return sName;
+	};
+
 	$scope.fnConfirm = function (usuariosConfirm, usuariosJogo) {
 		var iReturn = 1;
+		
 		if (usuariosConfirm) {
-			for (x in usuariosConfirm) {
-				if (usuariosJogo.id === parseInt(x, 10)) {
-					if (usuariosConfirm[x] === "CONFIRMADO") {
+			for (var x = 0; x < usuariosConfirm.usersJogo2.length;x++) {
+				var jogos = usuariosConfirm.usersJogo2[x];
+				if(jogos.user_id === usuariosJogo.id){
+					if (jogos.status_user === "CONFIRMADO") {
 						iReturn = 3;
 						break
-					} else if (usuariosConfirm[x] === "NAOVO") {
+					} else if (jogos.status_user === "NAOVO") {
 						iReturn = 2;
 						break
 					}
-
+		
 				}
 			}
 		}
+		
 		return iReturn;
 	}
 

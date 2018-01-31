@@ -45,11 +45,13 @@
 
 	qat.model.UserJogo2 = function(oJogo)
     {
-		oJogo.id ? this.id          	=  oJogo.id : null;
-		this.user_id       	=  oJogo.user_id;
-		this.jogo_id		=  oJogo.jogo_id;
-		this.status_user	=  oJogo.status_user ? oJogo.status_user : "SOLICITADO";
-		this.admin			=  oJogo.admin ? oJogo.admin : "NAO";
+		oJogo.id           ? this.id          	=  oJogo.id : null;
+		oJogo.user_id      ? this.user_id      	=  oJogo.user_id : null;
+		oJogo.jogo_id      ? this.jogo_id		=  oJogo.jogo_id : null;
+		oJogo.status_user  ? this.status_user	=  oJogo.status_user ? oJogo.status_user : "SOLICITADO" : null;
+		oJogo.admin        ? this.admin			=  oJogo.admin ? oJogo.admin : "NAO" : null;
+		oJogo.aprovadoPor  ? this.aprovadoPor	=  oJogo.aprovadoPor  : null;
+		oJogo.aprovadoDate ? this.aprovadoDate	=  oJogo.aprovadoDate : null;
        
 
 	};
