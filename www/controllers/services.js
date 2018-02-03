@@ -1,7 +1,7 @@
 var app = angular.module('YWP2Web.services', [])
 
 app.service('wooshopService', function($http, $q, SETTINGS){
-    
+    //5555
     this.getCategories =  function() {
         var deferred = $q.defer();
         var data = [];
@@ -27,12 +27,12 @@ app.service('wooshopService', function($http, $q, SETTINGS){
             }
             deferred.resolve(data);
         })
-        
+
         return deferred.promise;
     }
-    
+
     this.getItems =  function() {
-    
+
         // API request to  Fetch all Products
 
         var deferred = $q.defer();
@@ -60,9 +60,9 @@ app.service('wooshopService', function($http, $q, SETTINGS){
 
         return deferred.promise;
     }
-    
+
     // API request to  Fetch all Category Products
-    
+
     this.getCatItems =  function(getCatSlug) {
 
         var deferred = $q.defer();
@@ -83,13 +83,13 @@ app.service('wooshopService', function($http, $q, SETTINGS){
 
         return deferred.promise;
     }
-    
+
     // API request to  Fetch Single Product
-    
+
     this.getItem =  function(productId) {
         var deferred = $q.defer();
         var data = [];
-        
+
         $http({
             method: 'GET',
             url: SETTINGS.base_url + '/API.php/',
@@ -104,13 +104,13 @@ app.service('wooshopService', function($http, $q, SETTINGS){
 
         return deferred.promise;
     }
-    
+
     // API request to  Fetch Store Parameters
-    
+
     this.getIndex =  function() {
         var deferred = $q.defer();
         var data = [];
-        
+
         $http({
             method: 'GET',
             url: SETTINGS.base_url + '/API.php/',
@@ -120,7 +120,7 @@ app.service('wooshopService', function($http, $q, SETTINGS){
         })
         .then(function(data){
              data = data.data['store']['meta'];
-            
+
             deferred.resolve(data);
         })
 
