@@ -11277,3 +11277,7 @@ body {
   width: 30px;
   height: 28px;
 }
+.modal-dialog {
+  margin-top: 50px!Important;
+}
+
