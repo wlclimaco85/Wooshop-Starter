@@ -1,10 +1,14 @@
-angular.module('App.Admin').controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
+
+
+
+
+angular.module('App.Admin').controller('ModalDemoCtrl', function (jogoFactory,$uibModal, $log, $document) {
   var $ctrl = this;
   $ctrl.items = ['item1', 'item2', 'item3'];
 
   $ctrl.animationsEnabled = true;
 
-  $ctrl.open = function (size, parentSelector,jogo,status) {
+  $ctrl.open = function (size, parentSelector,jogo,status) {debugger
     var parentElem = parentSelector ? 
       angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
@@ -17,9 +21,10 @@ angular.module('App.Admin').controller('ModalDemoCtrl', function ($uibModal, $lo
       size: size,
       appendTo: parentElem,
       resolve: {
+        
         items: function () {
-          
-          return jogo;
+          debugger
+          return {"jogo" : jogo,"status" : status};
         }
       }
     });
@@ -50,7 +55,7 @@ angular.module('App.Admin').controller('ModalDemoCtrl', function ($uibModal, $lo
       resolve: {
         items: function () {
           
-          return jogo;
+          return {"jogo" : jogo,"status" : status};
         }
       }
     });
@@ -116,14 +121,18 @@ angular.module('App.Admin').controller('ModalDemoCtrl', function ($uibModal, $lo
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-angular.module('App.Admin').controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
+angular.module('App.Admin').controller('ModalInstanceCtrl', function (jogoFactory,$uibModalInstance, items) {
   var $ctrl = this;
   $ctrl.items = items;
   $ctrl.selected = {
     item: $ctrl.items[0]
   };
 
-  $ctrl.ok = function () {
+  $ctrl.ok = function (oJogo, sStatus) {
+    debugger
+   // $scope.loading = true;
+    jogoFactory.update(oJogo, sStatus);
+ //   $scope.loading = false;
     $uibModalInstance.close($ctrl.selected.item);
   };
 

@@ -67,7 +67,66 @@ inputactionController.$inject = ['AuthService'];
             {
                 if(response[x] && response[x].endereco)
                 {
-                    setMarker(map, new google.maps.LatLng(response[x].endereco.lat, response[x].endereco.longi), 'London', response[x].nome);
+                    
+                    var teste = '<div class="container-fluid">'+
+                    '<div class="col-md-12">'+
+                    '<span class="label label-default">Nome : '+response[x].nome+'</span> <span class="label label-default"></span>'+
+                    '</div>'+
+                    '<div class="col-md-12">'+
+                    '<span class="label label-default"> Endereço : '+response[x].endereco.logradouro+' '+response[x].endereco.numero+'  '+response[x].endereco.bairro+' </span>'+
+                    '</div>'+
+                    '<div class="col-md-12">'+
+                    '<span class="label label-default">Email : '+response[x].email+'</span>'+
+                    '</div>'+
+                    '<div class="col-md-12">'+
+                    '<span class="label label-default">Telefone :'+response[x].telefone+'</span>'+
+                    '</div>'+
+                    '<div class="col-md-12">'+
+                    '<span class="label label-default">Responsavel : '+response[x].nomeResponsavel+'</span>'+
+                    '</div>';
+                    for(var y = 0;y < response[x].quadras.length;y++){
+                        teste = teste  + '<hr><div class="col-md-12"><span class="label col-md-12 label-default">Quadra : '+response[x].quadras[y].nome+'</span></div>'+
+                    '<div class="col-md-12"><span class="label col-md-12 label-default">Valor S/Bola : '+response[x].quadras[y].valor+'</span></div>'+
+                    '<div class="col-md-12"><span class="label col-md-12 label-default">Valor C/Bola : '+(response[x].quadras[y].valor + response[x].quadras[y].valorBola) +'</span></div>'+
+                    '<div class="col-md-12"><span class="label col-md-12 label-default">Cobertura : '+response[x].quadras[y].cobertura+'</span></div>'+
+                    '<div class="col-md-12"><span class="label col-md-12 label-default">Tipo : '+response[x].quadras[y].tipo+'</span></div><hr><br>';
+                    }
+
+
+                    teste = teste  + '<div class="row">'+
+                    '<div class="col-md-12">'+
+                    '<div class="carousel slide" id="carousel-242657">'+
+                    '<ol class="carousel-indicators">'+
+                    '<li class="active" data-slide-to="0" data-target="#carousel-242657">'+
+                    '</li>'+
+                    '<li data-slide-to="1" data-target="#carousel-242657">'+
+                    '</li>'+
+                    '<li data-slide-to="2" data-target="#carousel-242657">'+
+                    '</li>'+
+                    '</ol>'+
+                    '<div class="carousel-inner">'+
+                    '<div class="item active">'+
+                    '<img alt="Carousel Bootstrap First" src="http://lorempixel.com/output/sports-q-c-1600-500-1.jpg" />'+
+                    '<div class="carousel-caption">'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="item">'+
+                    '<img alt="Carousel Bootstrap Second" src="http://lorempixel.com/output/sports-q-c-1600-500-2.jpg" />'+
+                    '<div class="carousel-caption">'+
+                            '</div>'+
+                    '</div>'+
+                    '<div class="item">'+
+                    '<img alt="Carousel Bootstrap Third" src="http://lorempixel.com/output/sports-q-c-1600-500-3.jpg" />'+
+                    '<div class="carousel-caption">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div> <a class="left carousel-control" href="#carousel-242657" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-242657" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>';
+
+                    setMarker(map, new google.maps.LatLng(response[x].endereco.lat, response[x].endereco.longi), 'London',teste);
                 }
             }
           //  setMarker(map, new google.maps.LatLng(51.508515, -0.125487), 'London', 'Just some content');

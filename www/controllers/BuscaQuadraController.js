@@ -17,6 +17,7 @@ function BuscaQuadraController($scope, $rootScope, $location, AuthService, $http
             
             vm.empresaList = response;
             $scope.empresaList = response;
+            console.log($scope.empresaList);
             $scope.loading = false;
            // if (resp && resp.code==200) {
           //      AuthService.createJWTToken(resp.result.user, resp.result.token);

@@ -40,6 +40,7 @@
         this.dia = oJogo.dia ;
 		this.status = oJogo.status ;
 		this.user_id =  oJogo.user_id;
+		this.maximoConfirmados =  oJogo.maximoConfirmados;
 
 	};
 
