@@ -389,6 +389,32 @@ angular.module('App.Auth')
               });
             };
 
+            service.fetchAllNotificacoes = function (notificacaoRequest, callback) {
+                BackendCfg.setupHttp($http);
+                
+                // this.createCredentials(user.email, user.password);
+
+               // var aesPack = this.encryptPassword(user.password);
+                
+                var authorizationBasic = 'bXVrZXNoOm0xMjM=';
+                var url = 'http://localhost:8080/notificacao/fetchByUser'
+
+                $.ajax
+                ({
+                   
+                    type: "POST",
+                    url: url,
+                  dataType: 'json',
+                //  contentType: "charset=utf-8", 
+                  contentType: "text/plain; charset=UTF-8" ,
+                  data: JSON.stringify(notificacaoRequest),
+                  success: function (response){
+                      
+                       callback(response);
+                  }
+              });
+            };
+
             service.marcarJogo = function (jogo, callback) {
                 BackendCfg.setupHttp($http);
                 

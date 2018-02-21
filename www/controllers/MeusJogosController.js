@@ -50,7 +50,7 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 	$scope.fnConfirm = function (usuariosConfirm, usuariosJogo) {
 		var iReturn = 1;
 		
-		if (usuariosConfirm) {
+		if (usuariosConfirm && usuariosConfirm.usersJogo2) {
 			for (var x = 0; x < usuariosConfirm.usersJogo2.length;x++) {
 				var jogos = usuariosConfirm.usersJogo2[x];
 				if(jogos.user_id === usuariosJogo.id){
