@@ -101,7 +101,7 @@
 <ion-view title="Buscar Quadra" id="page5">
 	<ion-content padding="true" class="has-header">
 		<div id="menu"   ng-controller="BuscaQuadraController as lcA" >
-			<loading>
+			<loading></loading>
 			<div class="panel list-group">
 				<a class="list-group-item" data-toggle="collapse" data-target="#sl1fff" data-parent="#menu"><span class="glyphicon glyphicon-resize-vertical"></span>Filtros <span class="glyphicon glyphicon-list pull-right"></span></a>
 				<div id="sl1fff" class="sublinks collapse in" style="border: 1px solid rgb(221, 221, 221)">
@@ -119,7 +119,7 @@
 					</div>
 					<div id="buscarStatus-container3" class="creator-container"  style="margin-top:1%;margin-left:1%;margin-bottom:1%;">
 						<label for="Dom" class="btn btn-info">DISPONIVEL<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender0" id="defaults"  value="DISPONIVEL" checked="checked" class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
-						<label for="Seg" class="btn btn-info">ACONFIRMAR<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender1"    value="CONFIRMAR" id="default" checked="checked"  class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
+						<label for="Seg" class="btn btn-info">ACONFIRMAR<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender1"    value="ACONFIRMAR" id="default" checked="checked"  class="badgebox" ng-true-value="'1'" ng-false-value="'2'"><span class="badge">&check;</span></label>
 						<label for="Ter" class="btn btn-info">OCUPADO<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender2"    value="OCUPADO" id="primary" class="badgebox" checked="checked"><span class="badge">&check;</span></label>
 						<label for="Qua" class="btn btn-info">INDISPONIVEL<input ng-click="orderByMe('SABADO')" type="checkbox" name="gender3"    value="INDISPONIVEL" id="info" class="badgebox" checked="checked"><span class="badge">&check;</span></label>
 					</div>
@@ -149,16 +149,16 @@
 							</div>
 							<div ng-controller="ModalDemoCtrl as $ctrl">
 								<a  class="list-group-item">
-									AÇÕES
+									AÃ‡Ã•ES
 									<span class="pull-right">
 										<button ng-click="gravarHorario(jogo, 'EXCLUIR')" class="btn btn-xs btn-warning glyphicon glyphicon-trash"      uib-tooltip="Excluir Horario!" tooltip-append-to-body="true" ></button><!-- Excluir-->
 										<button ng-if="jogo.status=='INDISPONIVEL'" ng-click="gravarHorario(jogo, 'DESMARCAR')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"   uib-tooltip="Desmarcar!" tooltip-append-to-body="true"></button><!-- Desmarcar -->
 										<button ng-if="jogo.status=='CONFIRMAR'"    ng-click="gravarHorario(jogo, 'INDISPONIVEL')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Aprovar!"   tooltip-append-to-body="true"></button><!-- Aprovar -->
 										<button ng-if="jogo.status=='CONFIRMAR'"    ng-click="gravarHorario(jogo, 'DISPONIVEL')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"  uib-tooltip="Recusar!"   tooltip-append-to-body="true"></button><!-- nao aprovar -->
 										<button ng-if="jogo.status=='OCUPADO'"      ng-click="gravarHorario(jogo, 'DISPONIVEL')" class="btn btn-xs btn-success glyphicon glyphicon-ok"      uib-tooltip="Disponibilizar!" tooltip-append-to-body="true"></button><!-- tornar disponivel -->
-										<button ng-if="jogo.status=='DISPONIVEL'"   ng-click="gravarHorario(jogo, 'OCUPADO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"     uib-tooltip="Ocupar!" tooltip-append-to-body="true"></button><!-- marcar como ocupado -->
-										<button ng-if="jogo.status=='DISPONIVEL'"   ng-click="$ctrl.open('sm', '.modal-parent',jogo, 'OCUPADO')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Marcar Horario!" tooltip-append-to-body="true"></button><!-- Aprovar -->
-										<button ng-if="jogo.status=='INDISPONIVEL'" ng-click="$ctrl.openSolicitacao('sm', '.modal-parent',jogo, 'OCUPADO')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Solicitar Participação!" tooltip-append-to-body="true"></button><!-- Aprovar --> 
+										<button ng-if="jogo.status=='DISPONIVEL'"   ng-click="gravarHorario(jogo, 'ACONFIRMAR')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"     uib-tooltip="Ocupar!" tooltip-append-to-body="true"></button><!-- marcar como ocupado -->
+										<button ng-if="jogo.status=='DISPONIVEL'"   ng-click="$ctrl.open('sm', '.modal-parent',jogo, 'ACONFIRMAR')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Marcar Horario!" tooltip-append-to-body="true"></button><!-- Aprovar -->
+										<button ng-if="jogo.status=='INDISPONIVEL'" ng-click="$ctrl.openSolicitacao('sm', '.modal-parent',jogo, 'ACONFIRMAR')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Solicitar Participaï¿½ï¿½o!" tooltip-append-to-body="true"></button><!-- Aprovar --> 
 									</span>
 							</div>
 							</a>
@@ -167,6 +167,6 @@
 				</div>
 			</div>
 		</div>
-	</loading>
+	
 	</ion-content>
 </ion-view>
