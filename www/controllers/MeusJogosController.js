@@ -24,7 +24,7 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 	$scope.myFilterUserJogo = function (item) {
 		var globals = JSON.parse(localStorage.getItem('globals'));
     	var oUser = globals.currentUser;
-		return ((item.status_user === 'SOLICITADO') && (oUser.id === item.user_id));
+		return ((item.status_user === 'SOLICITADO'));
 	};
 
 	$scope.myFilter2 = function (item) {
@@ -204,7 +204,7 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 	}
 
 	$scope.aprovarJogador = function (oJogo, sStatus) {
-
+		oJogo.aprovadoPor = oUser.id;
 		jogoFactory.aprovarJogador(oJogo, sStatus, function (oResp) {
 			AuthService.fetchJogosByUserId(oUser, fnCallback)
 		});
