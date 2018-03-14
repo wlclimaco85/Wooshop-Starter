@@ -1,16 +1,32 @@
 <div ng-include="'/../templates/menuButton.html'"></div>
 <ion-view title="Notificações" id="page3">
   <ion-content padding="true" class="has-header">
-    <ion-list id="notificaEs-list4">
-      <div  data-ng-controller="NotificacaoController  as ec">
-          <div ng-repeat="notificacao in ec.notificacoesList">
-      <ion-item class="item-icon-left item-icon-right" id="notificaEs-list-item16">
-        <i class="icon ion-ionic"></i>
-        <span class="item-note">{{notificacao.titulo}}</span>
-        <i class="icon ion-alert-circled icon-accessory"></i>
-      </ion-item>
-      </div>
-    </div>
-    </ion-list>
+    <div  data-ng-controller="NotificacaoController  as ec">
+      <div class="container">
+          <div class="panel panel-default">
+            <table class="table table-hover">
+              <tbody>
+                <tr ng-repeat="notificacao in ec.notificacoesList">
+                  <td ng-click="ec.lerNotificacao(notificacao)" ng-style="notificacao.status === 'NAOLIDO' ? { 'font-weight': 'bolder' } : { 'font-weight': 'normal' }">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    {{notificacao.titulo}}
+                  </td>
+                  <td class="text-right text-nowrap">
+                    <button ng-click="ec.deleteNotificacao(notificacao)" class="btn btn-xs btn-warning">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </td>
+                </tr>          
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+    
+          </div>
   </ion-content>
 </ion-view>
+
+
+
+

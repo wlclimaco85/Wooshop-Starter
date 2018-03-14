@@ -32,6 +32,13 @@ function MeusJogosController($scope, jogoFactory, $rootScope, $location, AuthSer
 		return (item.status === 'CONFIRMADO' || item.status === 'NAOVO');
 	};
 
+	$scope.myFilter3 = function (item) {
+		var globals = JSON.parse(localStorage.getItem('globals'));
+    	var oUser = globals.currentUser;
+		return (item.status === 'ACONFIRMAR'  && oUser.id === item.user_id);
+	};
+
+
 	$scope.fnNameJogadorAprovar = function (item,jogoData) {
 
 		var sName = "";

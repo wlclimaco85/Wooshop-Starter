@@ -12,17 +12,32 @@ function NotificacaoController($scope, $rootScope, $location, AuthService, $http
     var oUser = globals.currentUser;
     var oNotificacaoRequest = {userId : oUser.id,empresaId : 82,role : oUser.roles[0]};
     AuthService.fetchAllNotificacoes(oNotificacaoRequest, function (response) {
-        debugger
         vm.notificacoesList = response.result.notificacaoList;
         $scope.loading = false;
-        // if (resp && resp.code==200) {
-        //      AuthService.createJWTToken(resp.result.user, resp.result.token);
-        //     AuthService.setCredentials();
-        //     $location.path('/app');
-        //  $scope.quadras = 
-        
     });
 
-   
+    vm.lerNotificacao = function (oNotificacao) {
+        $scope.loading = true;
+        if(oNotificacao.status === 'NAOLIDO')
+        {
+            oNotificacao.status = 'LIDO'
+            AuthService.updateNotificacoes(new qat.model.notificacao(oNotificacao, oUser.roles[0]), function (response) {
+                AuthService.fetchAllNotificacoes(oNotificacaoRequest, function (responses) {
+                    vm.notificacoesList = responses.notificacaoList;
+                    $scope.loading = false;
+            });
+        });
+        }
+    }
+
+    vm.deleteNotificacao = function (oNotificacao) {
+        $scope.loading = true;
+            AuthService.deleteNotificacoes(new qat.model.notificacao(oNotificacao, oUser.roles[0]), function (response) {
+                AuthService.fetchAllNotificacoes(oNotificacaoRequest, function (responsess) {
+                    vm.notificacoesList = responsess.notificacaoList;
+                    $scope.loading = false;
+            });
+        });
+    }
     
 };
