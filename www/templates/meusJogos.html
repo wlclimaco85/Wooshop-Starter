@@ -87,7 +87,7 @@
 								<div id="menu">
 									<div class="panel list-group">
 										<div ng-repeat="jogo in jogos | orderBy:'dia'">
-											<div class="well" ng-repeat="jogoData in jogo.jogos | filter : myFilter   | orderBy:'-data'">
+											<div class="well" ng-repeat="jogoData in jogo.jogos | filter : myFilter3   | orderBy:'-data'">
 												<a class="list-group-item" data-toggle="collapse" data-target="#sm10{{jogo.id-$index}}" data-parent="#menu"><span class="glyphicon glyphicon-home"></span> K10 SPORTS QUADRA-1 <span>{{jogoData.data | date:"dd/MM/yy"}}</span></a>
 												<div id="sm10{{jogo.id-$index}}" class="sublinks collapse">
 													<a class="list-group-item small"> {{jogoData.status}} - {{jogo.dia}}  {{jogo.horaInicial}} {{jogo.horaFinal}}.</a>
@@ -97,16 +97,16 @@
 													<div ng-repeat="user in jogo.usersJogo">
 														<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
 														<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
-														<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="NÃ£o Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
-														<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lÃ¡!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
+														<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
+														<img ng-show="fnConfirm(jogoData.userConfirm, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
 														</a>
 													</div>
 												</div>
 												<a class="list-group-item">
-													AÃ§Ãµes 
+													Ações 
 													<span class="pull-right">
 														<button ng-click="gravarHorario(jogoData, 'CONFIRMADO')" class="btn btn-xs btn-success glyphicon glyphicon-ok"    uib-tooltip="Confirmar!"   tooltip-append-to-body="true"></button><!-- Aprovar -->
-														<button ng-click="gravarHorario(jogoData, 'NAOVO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"   uib-tooltip="NÃ£o Vai dar!"    tooltip-append-to-body="true"></button><!-- Desmarcar -->
+														<button ng-click="gravarHorario(jogoData, 'NAOVO')" class="btn btn-xs btn-warning glyphicon glyphicon-remove"   uib-tooltip="Não Vai dar!"    tooltip-append-to-body="true"></button><!-- Desmarcar -->
 													</span>
 												</a>
 											</div>
@@ -138,8 +138,8 @@
 													<div ng-repeat="user in jogo.usersJogo">
 														<a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> {{user.name}} {{user.lastName}}<span class="pull-right fa">
 														<img ng-show="fnConfirm(jogo, user ) === 1" src="/../images/hold.png" uib-tooltip="Sem Resposta!" tooltip-append-to-body="true" height="20px" width="20px" >
-														<img ng-show="fnConfirm(jogo, user ) === 2" src="/../images/dislike2.png" uib-tooltip="NÃ£o Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
-														<img ng-show="fnConfirm(jogo, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lÃ¡!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
+														<img ng-show="fnConfirm(jogo, user ) === 2" src="/../images/dislike2.png" uib-tooltip="Não Vo!" tooltip-append-to-body="true" height="20px" width="20px" >
+														<img ng-show="fnConfirm(jogo, user ) === 3" src="/../images/like.png" uib-tooltip="Estarei lá!" tooltip-append-to-body="true" height="20px" width="20px" ></span>
 														</a>
 													</div>
 												</div>

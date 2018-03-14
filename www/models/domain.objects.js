@@ -123,4 +123,23 @@
         this.valor = oQuadra.valor ? parseFloat(oQuadra.valor) : 0;
         this.comBola = oQuadra.comBola ? parseInt(oQuadra.comBola) : 0;
         this.valorBola = oQuadra.sex ? parseFloat(oQuadra.valorBola) : 0;
-    };
+	};
+	
+	qat.model.notificacao = function(oNotificacao)
+	{
+
+	
+		this.id 		= oNotificacao.id ? parseInt(oNotificacao.id) : null;
+		this.descricao 	= oNotificacao.descricao ? oNotificacao.descricao : null;
+		this.updatedAt 	= new Date();
+		this.titulo 	= oNotificacao.titulo ? oNotificacao.titulo : null;
+		this.status 	= oNotificacao.status ? oNotificacao.status : null;
+		this.deUserId 	= oNotificacao.deUserId ? parseInt(oNotificacao.deUserId) : null;
+		this.deEmprId 	= oNotificacao.deEmprId ? parseInt(oNotificacao.deEmprId) : null;
+		this.paraUserId = oNotificacao.paraUserId ? parseInt(oNotificacao.paraUserId) : null;
+		this.paraEmprId = oNotificacao.paraEmprId ? parseInt(oNotificacao.paraEmprId) : null;
+		this.deJogoId 	= oNotificacao.deJogoId ? parseInt(oNotificacao.deJogoId) : null;
+		this.paraJogoId = oNotificacao.paraJogoId ? parseInt(oNotificacao.paraJogoId) : null;
+		
+
+	};
