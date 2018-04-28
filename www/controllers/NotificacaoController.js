@@ -1,13 +1,11 @@
-/**
- * Created by Y.Kamesh on 4/13/2015.
- */
-
-angular.module('App.Admin')
-    .controller('NotificacaoController', ['$scope', '$rootScope', '$location', 'AuthService','$http','$interval', 'jogoFactory', NotificacaoController])
-function NotificacaoController($scope, $rootScope, $location, AuthService, $http, $interval, jogoFactory,localStorageService,toastr) {
+(function() {
+  angular.module('wdApp.apps.notificacao', []).controller('NotificacaoController', 
+  ['$scope', 'jogoFactory', 'AuthService', '$rootScope', '$location', '$http', '$interval', 'SysMgmtData', 'toastr', 'toastrConfig','$uibModal',
+	function($scope, jogoFactory, AuthService, $rootScope, $location,   $http, $interval, SysMgmtData, toastr, toastrConfig,$uibModal) {
+	debugger
+	
     var vm = this;
 
-    $scope.loading = true;
     var globals = JSON.parse(localStorage.getItem('globals'));
     var oUser = globals.currentUser;
     var oNotificacaoRequest = {userId : oUser.id,empresaId : 82,role : oUser.roles[0]};
@@ -40,4 +38,5 @@ function NotificacaoController($scope, $rootScope, $location, AuthService, $http
         });
     }
     
-};
+  ]);
+}).call(this);

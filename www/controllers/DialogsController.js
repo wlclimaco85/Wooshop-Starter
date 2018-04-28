@@ -161,10 +161,12 @@ angular.module('App.Admin').component('modalComponent', {
     };
 
     $ctrl.ok = function () {
+    	debugger
       $ctrl.close({$value: $ctrl.selected.item});
     };
 
     $ctrl.cancel = function () {
+    	debugger
       $ctrl.dismiss({$value: 'cancel'});
     };
   }
